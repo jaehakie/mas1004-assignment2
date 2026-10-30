@@ -1,0 +1,3 @@
+python src/midpoint_prepare.py
+python src/curate.py count
+python src/official.py --quick
