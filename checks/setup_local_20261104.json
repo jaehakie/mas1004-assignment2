@@ -1,0 +1,87 @@
+{
+  "checked_at_kst": "2026-11-04T14:16:11+09:00",
+  "python": "3.12.15",
+  "architecture": "AMD64",
+  "packages": {
+    "torch": "2.6.0",
+    "torchvision": "0.21.0",
+    "numpy": "2.2.6",
+    "pillow": "13.0.0",
+    "onnx": "1.19.1",
+    "onnxruntime": "1.23.2"
+  },
+  "data_counts": {
+    "train": 44257,
+    "val": 12077
+  },
+  "full_run_estimate_minutes": 320,
+  "quick_run": {
+    "track": "A",
+    "tag": "setup_local_20261104",
+    "seed": 0,
+    "official_budget": false,
+    "budget": 1280,
+    "batch_size": 64,
+    "steps": 20,
+    "selection": "selection.csv, 44257 rows",
+    "selection_counts": {
+      "seoul": 11274,
+      "busan": 5191,
+      "tokyo": 13347,
+      "osaka": 7200,
+      "taipei": 7245
+    },
+    "device": "cpu",
+    "train_seconds": 93.2,
+    "val_score": 0.2875,
+    "val_per_city": {
+      "seoul": 0.3659,
+      "busan": 0.0435,
+      "tokyo": 0.6769,
+      "osaka": 0.1143,
+      "taipei": 0.2368
+    },
+    "val_confusion": [
+      [
+        15,
+        0,
+        12,
+        6,
+        8
+      ],
+      [
+        7,
+        1,
+        11,
+        1,
+        3
+      ],
+      [
+        11,
+        0,
+        44,
+        4,
+        6
+      ],
+      [
+        11,
+        0,
+        15,
+        4,
+        5
+      ],
+      [
+        13,
+        0,
+        16,
+        0,
+        9
+      ]
+    ],
+    "onnx_gap": 6.258487701416016e-07,
+    "recipe_sha": "17ac485223fa",
+    "selection_sha": "3305cbe86cfa",
+    "commit": "37166af",
+    "finished": "2026-11-04T14:15:44"
+  }
+}

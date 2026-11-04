@@ -1,0 +1,23 @@
+{
+    "source":  "https://jdasam.github.io/mas1004-leaderboard/board.json",
+    "updated":  "2026-11-04 00:41 KST",
+    "track":  "A",
+    "result":  {
+                   "nick":  "jaehakie",
+                   "tag":  "track-a-1",
+                   "submissions":  1,
+                   "published_at":  "2026-10-30T12:35:11Z",
+                   "title":  "starter recipe",
+                   "score":  0.3958,
+                   "low":  0.3932,
+                   "high":  0.3981,
+                   "per_city":  {
+                                    "seoul":  0.594,
+                                    "busan":  0.206,
+                                    "tokyo":  0.702,
+                                    "osaka":  0.25633333333333336,
+                                    "taipei":  0.22066666666666668
+                                },
+                   "val":  0.4917666666666667
+               }
+}

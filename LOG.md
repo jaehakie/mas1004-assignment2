@@ -24,3 +24,18 @@ End the log with your plan for what to try next.
 - Evidence: `checks/midpoint_quick.json`; original output is kept locally in
   `results/colab_logs/1030_212920_official.txt`.
 - This is a setup check, not a full baseline experiment; no full training was run.
+
+## 2026-11-04 Local First setup verification
+- Requested task: complete First setup in the existing working folder.
+- Installed the versions in uv.lock with uv; Python 3.12.15,
+  torch 2.6.0, torchvision 0.21.0.
+- The official downloader verified and unpacked 44,257 training
+  photos and 12,077 validation photos locally.
+- The unchanged starter recipe completed 20 steps on CPU, seed 0,
+  with validation score 0.2875.
+- The quick check estimated 320 minutes for a full run on this computer.
+- Evidence: checks/setup_local_20261104.json. Original output remains in
+  results/setup/quick-20261104.log. This is a setup check, not a full baseline run.
+- The existing Track A release is present in the leaderboard updated
+  2026-11-04 00:41 KST: score 0.3958, grader validation mean 0.4917666666666667.
+  Evidence: checks/leaderboard_20261104.json.
