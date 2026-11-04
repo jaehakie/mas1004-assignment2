@@ -39,3 +39,15 @@ End the log with your plan for what to try next.
 - The existing Track A release is present in the leaderboard updated
   2026-11-04 00:41 KST: score 0.3958, grader validation mean 0.4917666666666667.
   Evidence: checks/leaderboard_20261104.json.
+
+## 2026-11-04 Colab workflow preference
+- The student requested permanent removal of the newly installed local
+  starter data and training environment to recover disk space.
+- Future training and full dataset processing use Colab's free GPU.
+  Local work is for code, records, GitHub and imported results or previews.
+- When Colab execution is required, prepare the code and run queue, then
+  notify the student of the required manual steps and verify the output.
+- Existing quick-check results and historical setup evidence are retained.
+- Cleanup verified: local data/, .venv/ and the dedicated assignment2-runtime/
+  directory were permanently removed. Approximately 7.4 GB of free disk
+  space was recovered relative to the pre-cleanup check.

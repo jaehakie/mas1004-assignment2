@@ -9,6 +9,26 @@ The student works in VS Code with Cline and may never have used a terminal.
 Run the commands yourself, and tell the student only what they have to do with
 their own hands, such as logging in to a website or pressing Run all on Colab.
 
+## Student workflow preference (2026-11-04)
+
+The student explicitly chose Colab's free GPU for training and requested
+permanent removal of the local starter photos and training environment.
+This preference overrides the local installation, download and training
+steps in "First setup" below.
+
+- Keep starter photos, PyTorch training dependencies and training on Colab.
+  Do not download the full dataset, install a local ML environment or run
+  local training (including quick training) unless the student changes this
+  preference.
+- Use the local repository for code, GitHub, experiment records and imported
+  results or preview sheets. Preserve existing results and setup evidence.
+- When a requested task needs Colab, prepare and push the required code and
+  `colab_runs.txt` first. Then tell the student to open their Colab link and
+  choose Runtime, Run all. Explain any login, Drive permission or input that
+  the student needs to handle, and verify the returned output afterwards.
+- Import results using available lightweight tools; do not reinstall the
+  removed training environment merely to import a results ZIP.
+
 ## First setup
 
 The template is https://github.com/jdasam/mas1004-assignment2. Each step
