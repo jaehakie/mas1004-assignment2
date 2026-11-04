@@ -1,3 +1,5 @@
-python src/midpoint_prepare.py
-python src/curate.py count
-python src/official.py --quick
+python src/curate.py look seoul --every 200
+python src/curate.py look busan --every 200
+python src/curate.py look tokyo --every 200
+python src/curate.py look osaka --every 200
+python src/curate.py look taipei --every 200
