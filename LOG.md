@@ -171,3 +171,38 @@ End the log with your plan for what to try next.
 | 47 | seoul 0.87 |
 
 - Numerical summaries in the report should use the CSV labels and counts.
+
+## 2026-11-08 Baseline mistake observations: Osaka
+- Sheet viewed: results/curate/mistakes_baseline_seed0_osaka_00.png (48 validation photos).
+- Student's observations and hypotheses about the model's decisions, verbatim:
+
+> **도쿄로 간 사진 (42장): 일본이라는 건 맞췄지만 도시는 도쿄로 기본 설정한 것 같아.**
+>
+> - 방음벽이 있는 고가·도시고속도로 대시캠 장면이 특히 많아. 오사카 #4·#7(도쿄 0.97), #9·#10·#11(0.96), #12·#14(0.95), #17·#18(0.94), #26·#30(0.92), #36(0.91)이야. 도로 구조만으로는 두 도시를 가를 수 없어서 전부 도쿄로 갔어.
+> - 신사와 도리이 같은 일본 전통 건축도 도쿄로 갔어. 오사카 #1(도쿄 0.98), #5(0.97), #31(0.92), #44(0.90)야. 가장 높은 확신으로 틀린 게 #1이야.
+> - 배낭 멘 보행자가 있는 일반 거리인 #6(0.97), #15(0.94), #32(0.92), #35(0.92)도 같은 경우야.
+> - 평범한 주택가, 좁은 골목, 오래된 상점 거리인 #8, #27, #29, #33, #37, #45도 도쿄로 갔어.
+> - 불꽃놀이 #21(0.93)과 #45(0.90), 고층 아파트가 보이는 도로 #20(0.94)도 도시 단서가 약했어.
+> - 오사카 #25, #28, #40(도로 옆 터널 입구)은 오사카다운 지형이나 간판이 거의 안 보여.
+>
+> **서울로 간 사진 (5장): 글자나 사물이 일본 단서로 안 읽힌 경우야.**
+>
+> - 오사카 #2(서울 0.98)는 일본어 자막이 있는 거리인데도 서울로 갔어. 일본어를 읽고 있는지 의심스러워.
+> - 오사카 #47(서울 0.90)도 일본어 표지판이 있는데 서울로 갔어.
+> - 오사카 #19(검은 벤츠, 서울 0.94), #22(넓은 공터의 전통 건물, 서울 0.93), #48(국물 요리 한 그릇, 서울 0.89)은 도시 단서가 약하거나 한국 건축과 닮았어.
+>
+> **타이베이로 간 사진 (1장)**
+>
+> - 오사카 #38(붉은 아치형 다리와 연못, 타이베이 0.91)이야. 스미요시 다리처럼 오사카를 대표할 만한 장면인데 타이완 쪽으로 갔어.
+>
+> **눈에 띄는 점**은 오사카 정답 중 도쿄로 예측된 게 거의 대부분이라는 거야. 앞서 본 도쿄 오분류는 오사카로 17장이 갔는데, 오사카 오분류는 도쿄로 42장이 가서 비대칭이 커. 모델이 도쿄를 기본 선택으로 쓰고, 오사카 특유의 단서가 있어도 따로 반영하지 못하는 걸로 보여.
+
+### Mechanical cross-check against the sheet CSV
+- Source: results/curate/mistakes_baseline_seed0_osaka_00.csv.
+- Among these 48 displayed photos, prediction counts are Tokyo 42, Seoul 5
+  and Taipei 1, matching the Osaka counts in the student's observation.
+- The Tokyo comparison uses Osaka 16, as verified in
+  results/curate/mistakes_baseline_seed0_tokyo_00.csv; the original reference
+  to 17 above is preserved verbatim.
+- These comparisons describe the 48 most confident errors selected from each
+  city, not the prediction frequencies over the full validation sets.
