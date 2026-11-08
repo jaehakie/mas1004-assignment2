@@ -1,0 +1,22 @@
+{
+  "status": "published_and_download_verified",
+  "tag": "track-a-2",
+  "title": "logit adjustment tau=1",
+  "url": "https://github.com/jaehakie/mas1004-assignment2/releases/tag/track-a-2",
+  "published_kst": "2026-11-08T21:55:49+09:00",
+  "before_requested_midnight": true,
+  "target_commit": "9fe33c5d40b5fd71e2e6b81fbeb67cd0e3d0dcc3",
+  "assets": {
+    "recipe.py": {
+      "sha256": "61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856",
+      "bytes": 3373,
+      "download_matches_tested_asset": true
+    },
+    "selection.csv": {
+      "sha256": "365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e",
+      "bytes": 1345856,
+      "download_matches_tested_asset": true
+    }
+  },
+  "grading_status": "awaiting nightly grading; no leaderboard score claimed"
+}

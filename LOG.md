@@ -631,3 +631,22 @@ End the log with your plan for what to try next.
   365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e.
 - Next action is the already authorized track-a-2 Release with the selected
   title "logit adjustment tau=1", followed by verification of published assets.
+
+## 2026-11-08 track-a-2 published and downloaded assets verified
+- Release: https://github.com/jaehakie/mas1004-assignment2/releases/tag/track-a-2
+- Student-selected title: "logit adjustment tau=1".
+- Published 2026-11-08 21:55:49 KST (12:55:49 UTC), before the requested
+  2026-11-09 00:00 KST cutoff. Public, not a draft or prerelease.
+- Target commit: 9fe33c5d40b5fd71e2e6b81fbeb67cd0e3d0dcc3.
+- Exactly two assets: recipe.py (3,373 bytes) and selection.csv
+  (1,345,856 bytes, all 44,257 selected photos). No model, dataset or starter
+  download link is attached.
+- Downloaded both published assets and verified byte-for-byte equality with
+  the frozen tested assets. Their downloaded SHA256 values and GitHub asset
+  digests agree with checks/track_a_2_prepublication.json.
+- Evidence: checks/track_a_2_release.json and checks/track_a_2_verified.json.
+- The Track A submission requested for tonight is complete. Actual grading
+  and leaderboard reflection are pending the nightly grader; no leaderboard
+  score for this release is claimed. The existing registration is unchanged.
+- Next assignment work: Track B's first trained model and valid Release,
+  followed by the remaining reports before the final deadline.
