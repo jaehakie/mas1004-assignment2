@@ -650,3 +650,29 @@ End the log with your plan for what to try next.
   score for this release is claimed. The existing registration is unchanged.
 - Next assignment work: Track B's first trained model and valid Release,
   followed by the remaining reports before the final deadline.
+
+## 2026-11-08 b_baseline (Track B): default first valid submission requested
+- Student request (verbatim): "기본 코드로 첫 유효 제출 해보자"
+- Student execution preference (verbatim): "내가 colab실행할거야"
+- changed: no changes to the supplied src/train_b.py. Train its default
+  ResNet18, 224px, ImageNet-1k V1 starting weights, 4 epochs, batch 64,
+  AdamW learning rate 3e-4, and its original augmentation/loss/scheduler.
+- why: the student's request is to establish the first valid Track B
+  submission using the default code before choosing further changes.
+- Training data: all data/starter/train photos. No extra photos, balanced
+  sampling or post-hoc adjustment. Track B does not import track_a/recipe.py;
+  the already published Track A submission is independent of this run.
+- Tag b_baseline. The supplied Track B code does not set a seed; no seed was
+  added. With 44,257 photos and drop_last, expected budget is 176,896 photo
+  draws over 4 epochs (691 batches per epoch, batch 64).
+- Colab queue: GPU guard, unmodified train_b.py with --submit, official
+  check_submission.py --no-val, and a stdlib receipt recording the completed
+  training row and identical checked/exported submission file hashes.
+- --no-val avoids another full CPU validation pass after the training script
+  already measured the entire validation set. The official format and limits
+  checks still run on the actual ONNX submission. No local ML installation,
+  dataset processing or training is used for this preparation.
+- Pending: student runs Colab; import the returned model and metadata,
+  verify the run and format checks, record the student's interpretation,
+  and create the requested first valid Track B Release after the student
+  supplies its short title. No additional permission to submit is required.
