@@ -4,14 +4,15 @@
   "candidate_recipe_sha256": "61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856",
   "selection_sha256": "365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e",
   "baseline_training_hook_ast_sha256": {
-    "train_transform": "dda3a668c4dbdc2afc173e8a9023a4ef1e70be4878167666e8b9aeb417f540a0",
-    "sample_weights": "be071efcec7dddb950ef6113a8d4f0d3002a38be3041f7e7fdb1bb672a345b06",
-    "make_optimizer": "7de15364c5ce0022a26ea0ece809f771a95bbca05adc42824c3040531267aca7",
-    "make_scheduler": "d359f0745a7c57581c7b6d6f70f860fb878d8c2f5cd25ec4b31f8afe7be5d24a",
-    "mix": "6aa6d6dc52bd6d6506bb4ae507f1e9310dca168d60e2b1c8febd7cc9e645c0f5",
-    "loss_fn": "dbf9f294f2c7ec718891ea59325a96a9f2e0e3dce918be4955a32091d9510aea",
-    "on_step": "a1eb9a77d684cd64d0d66453d52db5cd51d1cc53dd3b2f255bb31072d410e708"
+    "train_transform": "c6a800db3aed84c2f60e92aa0c1ce1a495728fc78175da31df94c83cbcdc78de",
+    "sample_weights": "5bf8d5eb1f41ccb65bbda136e3be8f9eb9960de0193a0fc251f0c262967ffd99",
+    "make_optimizer": "32f843a00902c154270fc51955a2dbc00ad7a13781009668ec64acc938db57a1",
+    "make_scheduler": "addc64e2bc6edb6e0031db3d1e76c3e42d4b495231009dcc22b55346cd0cc264",
+    "mix": "96b6bf962de9f63caffa346c5eda3e8ffe70e4851c0f6474f186e27271b6b7d8",
+    "loss_fn": "6cc4b845028370ca7b184c9f438eb04c4f12ec3285be70c4b919fc73f489a5a8",
+    "on_step": "d899b227fc0180b836f1a94f017e14e07b6e841d4602ffb416b7928ccf88dfa5"
   },
+  "hook_fingerprint_method": "JSON AST fields; omit only empty type_params introduced in Python 3.12",
   "tau": 1.0,
   "city_order": [
     "seoul",

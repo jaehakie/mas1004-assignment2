@@ -586,3 +586,24 @@ End the log with your plan for what to try next.
 - Pending: import and verify the new Colab output, commit the result evidence,
   create track-a-2 with recipe.py and selection.csv, and verify the published
   assets and time before 2026-11-09 00:00 KST. Then proceed to Track B.
+
+## 2026-11-08 logit_tau1 preflight: AST version compatibility fix
+- Returned output at revision 6d9a4fb stopped in the auxiliary preflight with
+  `ValueError: Baseline training hook changed: train_transform`.
+- The official quick run was not started, no new full-training row was
+  added, and no new Release was created. The failed output is preserved in
+  results/colab_logs/1108_214600_check_logit_tau1.txt.
+- Cause: the auxiliary comparison hashed Python AST dumps produced on
+  different Python versions. Python 3.12 adds an empty type_params field to
+  function nodes; the baseline hash prepared on Python 3.11 did not include
+  that field. This was a checker bug, not a requested recipe change.
+- Fixed the auxiliary fingerprint to serialize AST fields consistently,
+  omitting only an empty type_params field. Nonempty fields remain checked.
+- Verified locally that adding the newer empty field preserves all baseline
+  hook fingerprints, while a real change to the crop size is still detected.
+  Static recipe checks, syntax and baseline-hook comparisons also pass.
+- The selected recipe and selection are unchanged, including canonical recipe
+  SHA256 61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856.
+- Pending: rerun the corrected preflight and the official quick check on Colab,
+  then complete the already authorized track-a-2 Release with title
+  "logit adjustment tau=1". No additional method/title approval is needed.

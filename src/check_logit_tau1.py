@@ -1,6 +1,7 @@
 """Colab preflight for a baseline recipe with tau=1 folded into its final bias."""
 import ast
 import csv
+import hashlib
 import importlib.util
 import json
 from collections import Counter
@@ -14,6 +15,20 @@ import official
 import rules
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def hook_fingerprint(node):
+    """Hash syntax consistently across Python 3.11 and 3.12+ AST schemas."""
+    def normalize(value):
+        if isinstance(value, ast.AST):
+            return [type(value).__name__, [[key, normalize(item)]
+                    for key, item in ast.iter_fields(value)
+                    if not (key == "type_params" and item == [])]]
+        if isinstance(value, list):
+            return [normalize(item) for item in value]
+        return value
+    data = json.dumps(normalize(node), ensure_ascii=True, separators=(",", ":"))
+    return hashlib.sha256(data.encode()).hexdigest()
 
 
 def main():
@@ -34,8 +49,7 @@ def main():
     tree = ast.parse(path.read_text(encoding="utf-8"))
     for node in tree.body:
         if isinstance(node, ast.FunctionDef) and node.name != "final_model":
-            import hashlib
-            digest = hashlib.sha256(ast.dump(node, include_attributes=False).encode()).hexdigest()
+            digest = hook_fingerprint(node)
             if digest != baseline_evidence["baseline_training_hook_ast_sha256"][node.name]:
                 raise ValueError("Baseline training hook changed: " + node.name)
     with (ROOT / "track_a/selection.csv").open(newline="", encoding="utf-8-sig") as stream:
