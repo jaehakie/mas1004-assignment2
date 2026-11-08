@@ -206,3 +206,37 @@ End the log with your plan for what to try next.
   to 17 above is preserved verbatim.
 - These comparisons describe the 48 most confident errors selected from each
   city, not the prediction frequencies over the full validation sets.
+
+## 2026-11-08 Baseline mistake observations: Taipei
+- Sheet viewed: results/curate/mistakes_baseline_seed0_taipei_00.png (48 validation photos).
+- Student's observations and hypotheses about the model's decisions, verbatim:
+
+> **도쿄로 간 사진 (25장): 간판이 안 보이는 평범한 도로, 주택가, 녹지야.**
+>
+> - 대시캠이나 도로 장면인 타이베이 #8·#12·#20·#21·#30·#46(도쿄 0.83\~0.93)이 대표적이야. 산이 보이는 도로(#8, #46)는 타이베이의 지형 단서일 수 있는데 반영되지 않은 것 같아.
+> - 타이베이 #2(잔디밭, 도쿄 0.96), #3(계단 있는 건물, 도쿄 0.96), #11·#45(숲길), #29·#37(아파트와 주택가), #39(덩굴 덮인 옛 건물)도 도쿄로 갔어.
+> - \#18과 #34(도쿄 0.88, 0.85)는 왼쪽 위에 작은 국기 아이콘이 있는데, 타이완 국기처럼 보여도 단서로 쓰이지 않은 듯해.
+> - \#44(네온 간판 야경, 도쿄 0.83)와 #41(한자 간판이 붙은 건물, 도쿄 0.84)은 한자 간판이 일본으로 읽힌 것 같아.
+>
+> **서울로 간 사진 (18장): 사람 많은 야시장과 상점가, 어안렌즈 영상이야.**
+>
+> - 타이베이 #4·#5(서울 0.95), #7(0.93), #26, #33, #36, #48(0.83\~0.86)은 인파와 가게 간판이 빽빽한 번화가야. 한국 명동이나 시장 같은 분위기로 읽혔을 수 있어.
+> - \#10·#17·#24·#32·#43(서울 0.84\~0.92)은 아래가 둥글게 휘어진 파노라마(어안) 영상이라 화질 문제로 도시 정보가 약했을 거야.
+> - 휴대용 화장실 #9(서울 0.92), 호수 위 정자 #13(서울 0.91), 교실 #35(서울 0.85)처럼 도시 단서가 약한 장면도 있어.
+>
+> **오사카로 간 사진 (4장): 한자와 사찰, 네온이야.**
+>
+> - \#22(한자 현수막, 오사카 0.87), #27(등불 가득한 사당, 오사카 0.86), #14(네온 간판 거리, 오사카 0.89)는 한자나 장식적인 간판, 사찰이 오사카로 이어진 것 같아.
+> - \#1(고층 타워, 오사카 0.96)은 가장 높은 확신으로 틀렸는데, 타워가 타이베이의 랜드마크일 수도 있어 보여.
+>
+> \*\*부산으로 간 사진 (1장)\*\*은 #47(푸른 언덕 산책로, 부산 0.83)이야. 산지 풍경이 부산으로 간 것 같아.
+>
+> **눈에 띄는 점**은 번체자 간판이 있는 사진(#22, #27, #41, #44, #48)도 타이베이로 안 갔다는 거야. 한자 때문에 일본이나 한국으로 간 거 같아. 앞의 도시들처럼 모델은 글자가 안 읽히면 도쿄, 인파가 많으면 서울로 가는 경향이 있어. 타이베이만의 단서인 열대 식생, 산, 스쿠터 같은 건 잘 못 쓴 것 같아.
+
+### Mechanical cross-check against the sheet CSV
+- Source: results/curate/mistakes_baseline_seed0_taipei_00.csv.
+- Among these 48 displayed photos, verified prediction counts are Tokyo 24,
+  Seoul 19, Osaka 4 and Busan 1.
+- The student's original counts above are preserved verbatim; numerical
+  summaries in the report should use these CSV counts.
+- These are the city's 48 most confident errors, not the full validation set.
