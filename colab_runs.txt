@@ -1,3 +1,1 @@
-python src/official.py --tag baseline --seed 0
-python src/official.py --tag baseline --seed 1
-python src/curate.py mistakes results/baseline_seed0/model.onnx
+python src/eval_logit_adjustment.py --models results/baseline_seed0/model.onnx results/baseline_seed1/model.onnx --taus 0 0.5 1 --tag prior_adjust_baseline_v1 --bins 15 --batch 32 --workers 2 --ort-threads 2

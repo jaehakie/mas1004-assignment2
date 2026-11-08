@@ -1,0 +1,26 @@
+{
+  "source": "track_a/selection.csv",
+  "canonical_selection_sha256": "365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e",
+  "total_selected_photos": 44257,
+  "city_order": [
+    "seoul",
+    "busan",
+    "tokyo",
+    "osaka",
+    "taipei"
+  ],
+  "counts": {
+    "seoul": 11274,
+    "busan": 5191,
+    "tokyo": 13347,
+    "osaka": 7200,
+    "taipei": 7245
+  },
+  "priors": {
+    "seoul": 0.2547393632645683,
+    "busan": 0.11729217976817227,
+    "tokyo": 0.3015794111665951,
+    "osaka": 0.16268612874799468,
+    "taipei": 0.16370291705266962
+  }
+}

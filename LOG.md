@@ -240,3 +240,71 @@ End the log with your plan for what to try next.
 - The student's original counts above are preserved verbatim; numerical
   summaries in the report should use these CSV counts.
 - These are the city's 48 most confident errors, not the full validation set.
+
+## 2026-11-08 Experiment proposal: training-class imbalance
+- Student's requested change, hypothesis, rationale and limits, verbatim:
+
+> 학습 데이터의 도시별 불균형을 보정하는 걸 바꿔보고 싶어. 방법은 클래스 균형 샘플링이나, 재학습 없이 되는 사후 로짓 보정(예측 로짓에서 τ·log(클래스 사전확률)을 빼는 방식)이야.
+>
+> **이유는 오분류가 한쪽으로 쏠려 있어서야.**
+>
+> - 오사카 정답 48장 중 42장이 도쿄로 갔는데, 도쿄 정답 중 오사카로 간 건 17장이야.
+> - 부산 정답은 34장이 서울로 갔고, 서울 정답 중 부산으로 간 건 12장이야.
+> - 타이베이 정답도 도쿄로 25장, 서울로 18장이 갔어.
+> - 도시 단서가 없는 방음벽 도로, 평범한 골목, 클로즈업은 대부분 도쿄나 서울로 가. 모델이 애매하면 데이터가 많은 큰 도시를 고르는 사전확률 편향이 있는 것 같아.
+> - 틀린 사진의 확률이 0.85\~0.99로 높다는 것도 같은 방향이야. 근거가 약한데도 높은 확률이 나온 건 데이터 분포가 확률에 그대로 반영됐다는 신호로 읽혀.
+>
+> 이건 내가 보고 세운 가설이고 학습 데이터의 도시별 장수는 내가 못 봤어. 그래서 실험 전에 클래스별 장수부터 확인하면 좋겠어.
+>
+> **Colab 실험 제안은 다음과 같아.**
+>
+> - 비교: 현재 모델 vs 사후 로짓 보정(τ를 0.5, 1.0 등으로 바꿔가며). 사후 보정은 재학습이 없어서 가장 빨라.
+> - 지표: 도시별 recall, 혼동행렬, 틀린 샘플의 평균 확률(보정 정도), ECE.
+> - 확인할 것: 오사카→도쿄, 부산→서울 쏠림이 줄어드는지, 그 대가로 도쿄·서울 recall이 얼마나 떨어지는지.
+>
+> **한계도 있어.** 도시 단서가 아예 없는 사진(오사카 방음벽 도로 등)은 보정해도 맞히기 어려워서, 오류가 다른 도시로 옮겨 가기만 할 수 있어. 그건 이 실험으로 얼마나 개선되는지 가를 수 있고, 개선이 작으면 입력 해상도나 글자 인식 같은 다음 조건을 보면 돼.
+
+### Verified class counts before the experiment
+- Source: the committed track_a/selection.csv, containing all 44,257 starter
+  training photos, once each. Evidence: checks/training_class_counts.json.
+
+| City | Selected training photos | Share (rounded) |
+| --- | --- | --- |
+| Seoul | 11274 | 25.47% |
+| Busan | 5191 | 11.73% |
+| Tokyo | 13347 | 30.16% |
+| Osaka | 7200 | 16.27% |
+| Taipei | 7245 | 16.37% |
+
+- The most-confident-error sheets are selected subsets. Their verified counts
+  are recorded in the preceding cross-checks, including Tokyo-to-Osaka 16 and
+  Taipei-to-Tokyo 24 / Taipei-to-Seoul 19.
+- Class imbalance is present; whether it causes the observed mistakes remains
+  the student's hypothesis to examine. Selecting the most confident mistakes
+  alone does not establish a cause of overconfidence.
+
+### Prepared experiment: prior_adjust_baseline_v1
+- First perform the requested no-retraining diagnostic on both saved baseline
+  seeds using fixed tau values 0, 0.5 and 1.0. Balanced sampling is a separate
+  retraining condition and is not combined with this diagnostic.
+- Use selected-training frequencies only for priors. Apply
+  adjusted_logits = logits - tau * log(prior), without fitting parameters.
+- Use all 12,077 validation photos with the official preprocessing and class
+  order. Cache one ONNX inference per model, and reuse those logits for every tau.
+- Recompute tau 0 with the same backend as other tau values. ONNX float32
+  predictions can differ slightly from the original CUDA mixed-precision scores.
+- Record official macro recall, ordinary accuracy, per-city recall, confusion
+  matrices and row-normalized pair error rates in both directions.
+- Record top-label ECE with 15 equal-width confidence bins, confidence on current
+  errors, and confidence / true-class probability on the fixed baseline-error set.
+- Count corrected baseline errors, newly introduced errors, and errors that
+  merely move to a different wrong city.
+- Save separate diagnostic results under results/prior_adjust_baseline_v1/.
+  These are not new training rows in experiments.csv. No best tau is selected
+  automatically, and no model is exported or released by this analysis.
+- Validation is a development set; choosing tau using these results does not
+  turn the same validation score into an independent test estimate.
+- The Track A recipe and selection remain unchanged. Any later submission
+  implementation requires a separate recipe change and official quick check.
+- References: [Menon et al., logit adjustment](https://arxiv.org/abs/2007.07314);
+  [Guo et al., calibration](https://proceedings.mlr.press/v70/guo17a.html).
