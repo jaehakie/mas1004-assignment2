@@ -56,3 +56,24 @@ End the log with your plan for what to try next.
 > - 도쿄 사진은 넓은 도로와 고층 오피스 거리, 대규모 환승역, 공원이 많아 정돈되고 규모가 커. 오사카 사진은 강과 다리, 성, 지붕이 튀는 상점가 간판 등 개성 있고 장식적인 인상이 강해.
 > - 오사카에서는 성곽과 해자라는 역사 유적, 강변 풍경이 자주 나오지만, 도쿄에서는 후지산, 항만 크레인, 도쿄돔 같은 대형 시설이 눈에 띄어.
 > - 다만 도쿄 사진 상당수가 일반 거리 영상이라, 건물이나 도로 모양만으로는 두 도시를 가르기 어려워서 간판 문구, 노선 표지, 랜드마크가 있을 때만 구분이 가능했던 거 같아.
+
+## 2026-11-08 baseline (Track A): starter recipe, seeds 0 and 1
+- Conditions: unchanged starter recipe and all 44,257 selected training photos;
+  only the random seed differs between the two runs. Both are full official-budget runs on Colab GPU.
+- Training revision: `de14ca6`; recipe SHA `17ac485223fa`, selection SHA `365384496af8`.
+- Results, as printed by the training code and recorded in `experiments.csv`:
+
+| Seed | Validation score | Training seconds | Training minutes (rounded) |
+| --- | --- | --- | --- |
+| 0 | 0.4933 | 2154.5 | 35.9 |
+| 1 | 0.5028 | 2073.4 | 34.6 |
+
+- Arithmetic mean of the two recorded scores: 0.49805. Their absolute difference
+  is 0.0095 (0.95 percentage points).
+- Evidence: `checks/baseline_seed0.json`, `checks/baseline_seed1.json`, and
+  `results/colab_logs/1108_150248_official_baseline_seed0.txt` /
+  `results/colab_logs/1108_154254_official_baseline_seed1.txt`.
+- `curate.py mistakes` completed on all 12,077 validation photos using seed 0.
+  It produced one sheet per city, showing that city's 48 most confident wrong predictions.
+- The student's interpretation of the results and mistake sheets will be recorded
+  after their review.
