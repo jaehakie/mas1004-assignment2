@@ -308,3 +308,62 @@ End the log with your plan for what to try next.
   implementation requires a separate recipe change and official quick check.
 - References: [Menon et al., logit adjustment](https://arxiv.org/abs/2007.07314);
   [Guo et al., calibration](https://proceedings.mlr.press/v70/guo17a.html).
+
+## 2026-11-08 prior_adjust_baseline_v1 results (post-hoc diagnostic)
+- Completed on Colab at evaluation revision bfa91cc, using both saved baseline
+  ONNX models and all 12,077 validation photos per model. No retraining occurred.
+- The six model/tau evaluations were checked independently from their exported
+  prediction CSVs: confusion matrices, recall, accuracy, ECE and error
+  transitions agreed across all 72,462 prediction cases.
+- Tau 0 was recomputed using the same ONNX backend as adjusted predictions.
+  Its macro recall differs from the rounded training-script scores by
+  +0.0001784400 (seed 0) and +0.0001462091 (seed 1).
+- The table contains arithmetic means of the two model-specific metrics:
+
+| Tau | Macro recall | Overall accuracy | ECE (15 bins) | Mean confidence on current errors |
+| --- | --- | --- | --- | --- |
+| 0 | 0.498212 | 0.524675 | 0.087887 | 0.538763 |
+| 0.5 | 0.511549 | 0.523557 | 0.077591 | 0.526057 |
+| 1 | 0.516638 | 0.514159 | 0.077232 | 0.517338 |
+
+- Tau 1 increases mean macro recall by 1.842576 percentage points and changes
+  overall accuracy by -1.051586 percentage points relative to tau 0.
+- Macro recall increases for both seeds at tau 0.5 and tau 1. Among these
+  pre-specified tau values, tau 1 has the highest validation macro recall
+  for each seed.
+
+| City | Mean recall at tau 0 | Mean recall at tau 0.5 | Mean recall at tau 1 |
+| --- | --- | --- | --- |
+| Seoul | 59.36% | 55.98% | 51.11% |
+| Busan | 40.68% | 47.16% | 52.99% |
+| Tokyo | 62.46% | 56.65% | 50.17% |
+| Osaka | 35.62% | 40.98% | 45.65% |
+| Taipei | 50.98% | 55.02% | 58.40% |
+
+- Pair error rates below use all validation photos of the true/source city as
+  their denominator and are averaged over the two models:
+
+| True city to prediction | Tau 0 | Tau 0.5 | Tau 1 |
+| --- | --- | --- | --- |
+| Osaka to Tokyo | 39.22% | 31.93% | 25.54% |
+| Tokyo to Osaka | 11.63% | 14.94% | 18.81% |
+| Busan to Seoul | 30.79% | 25.83% | 21.94% |
+| Seoul to Busan | 7.29% | 10.27% | 15.09% |
+| Taipei to Tokyo | 21.36% | 16.96% | 13.11% |
+| Taipei to Seoul | 18.57% | 16.30% | 13.69% |
+
+| Model | Tau | Corrected baseline errors | New errors | Rerouted but still wrong |
+| --- | --- | --- | --- | --- |
+| seed 0 | 0.5 | 341 | 342 | 325 |
+| seed 0 | 1 | 607 | 733 | 696 |
+| seed 1 | 0.5 | 295 | 321 | 319 |
+| seed 1 | 1 | 576 | 704 | 618 |
+
+- Evidence: checks/prior_adjust_baseline_v1/report.json, metrics.csv,
+  verified_summary.json, summary.md and summary.png.
+- Original predictions and confidence-bin / confusion-matrix CSVs remain in
+  results/prior_adjust_baseline_v1/. Execution output is in
+  results/colab_logs/1108_192403_eval_logit_adjustment_prior_adjust_baseline_v1.txt.
+- These diagnostic evaluations do not add training rows to experiments.csv.
+  The Track A recipe and selection remain unchanged, and no new release was made.
+- The student's interpretation and choice of the next method or tau are pending.
