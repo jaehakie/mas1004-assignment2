@@ -676,3 +676,19 @@ End the log with your plan for what to try next.
   verify the run and format checks, record the student's interpretation,
   and create the requested first valid Track B Release after the student
   supplies its short title. No additional permission to submit is required.
+
+## 2026-11-08 b_baseline: title selected; GPU unavailable before execution
+- Student selected the proposed Release title (verbatim response):
+  "starter model: ResNet18 224, 4 epochs (권장)".
+  The actual title is "starter model: ResNet18 224, 4 epochs"; the UI's
+  recommendation marker is not part of the title.
+- Student report (verbatim): "지금 코랩 무료 gpu 다써서 못돌려".
+- Student clarification (verbatim): "실행 아예 안햇어".
+- Track B training has not started. This is GPU unavailability before
+  execution, not a partially completed or failed training experiment. No
+  score, trained Track B model or new experiment row is recorded.
+- The default b_baseline Colab queue remains unchanged. Retry when a free
+  GPU becomes available; availability/reset time is not guaranteed. No local
+  training or CPU training has been started as a fallback.
+- Track A's verified track-a-2 Release remains complete. Track B and both
+  report PDFs still need completion before 2026-11-10 22:00 KST.
