@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "kind": "logit_tau1_recipe_preflight_not_training",
+  "recipe_sha256": "61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856",
+  "selection_sha256": "365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e",
+  "cities": [
+    "seoul",
+    "busan",
+    "tokyo",
+    "osaka",
+    "taipei"
+  ],
+  "training_counts": {
+    "busan": 5191,
+    "osaka": 7200,
+    "seoul": 11274,
+    "taipei": 7245,
+    "tokyo": 13347
+  },
+  "tau": 1.0,
+  "sampling": "unchanged baseline permutation",
+  "baseline_training_hooks_identical": true,
+  "real_torch_head_equivalence_max_gap": 2.384185791015625e-07,
+  "classifier_weight_unchanged": true,
+  "formula": "final fc.bias -= tau * log(selected training prior)",
+  "commit": "366f440",
+  "next_required_check": "official.py --quick on the same recipe before Release"
+}

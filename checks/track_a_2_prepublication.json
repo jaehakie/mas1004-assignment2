@@ -1,0 +1,21 @@
+{
+  "status": "verified_ready_to_release",
+  "tag": "track-a-2",
+  "title": "logit adjustment tau=1",
+  "tested_commit": "366f440",
+  "quick_validation_score": 0.299,
+  "quick_only_not_full_budget": true,
+  "validation_photos_in_quick": 202,
+  "assets": {
+    "recipe.py": {
+      "sha256": "61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856",
+      "bytes": 3373
+    },
+    "selection.csv": {
+      "sha256": "365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e",
+      "bytes": 1345856
+    }
+  },
+  "zip_sha256": "4a50ccd16d77ee8fd3d76271079ef31f322bf06d6dc4c90f52cc58a549c6636d",
+  "authorization": "Student selected baseline plus tau=1 and title logit adjustment tau=1; no further confirmation required."
+}

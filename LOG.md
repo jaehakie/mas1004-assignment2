@@ -607,3 +607,27 @@ End the log with your plan for what to try next.
 - Pending: rerun the corrected preflight and the official quick check on Colab,
   then complete the already authorized track-a-2 Release with title
   "logit adjustment tau=1". No additional method/title approval is needed.
+
+## 2026-11-08 logit_tau1: release checks passed
+- The corrected preflight completed on Colab at revision 366f440. All
+  baseline training hooks match, sampling remains unweighted, selected city
+  counts match, and the actual torch classifier-bias implementation matches
+  output-logit adjustment with maximum error 2.384185791015625e-07.
+- Official quick check completed on CUDA at 2026-11-08 21:52:24 KST: 20 steps,
+  batch size 64, 1,280 photo draws, 13.0 seconds training. Validation score
+  0.2990 on 202 strided validation photos; ONNX export gap
+  1.1920928955078125e-06. Architecture and export checks passed.
+- This is a format/execution check, not a full-budget score. The earlier
+  51.28% seed-0 / 51.66% two-seed-mean adjusted full-validation measurements
+  remain separate diagnostic evidence. experiments.csv still has three
+  full-training rows; no extra full training was performed for this check.
+- Evidence: checks/logit_tau1_preflight.json,
+  checks/logit_tau1_check_seed0.json and checks/track_a_2_prepublication.json.
+  Original output: results/colab_logs/1108_214925_check_logit_tau1.txt and
+  results/colab_logs/1108_214930_official_logit_tau1_check_seed0.txt.
+- Froze the exact tested LF-normalized recipe.py and selection.csv for
+  release. Their SHA256 values are respectively
+  61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856 and
+  365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e.
+- Next action is the already authorized track-a-2 Release with the selected
+  title "logit adjustment tau=1", followed by verification of published assets.
