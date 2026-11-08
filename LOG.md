@@ -75,5 +75,16 @@ End the log with your plan for what to try next.
   `results/colab_logs/1108_154254_official_baseline_seed1.txt`.
 - `curate.py mistakes` completed on all 12,077 validation photos using seed 0.
   It produced one sheet per city, showing that city's 48 most confident wrong predictions.
-- The student's interpretation of the results and mistake sheets will be recorded
-  after their review.
+- Student reviews are recorded below as they are provided.
+
+## 2026-11-08 Baseline mistake observations: Busan
+- Sheet viewed: results/curate/mistakes_baseline_seed0_busan_00.png (48 validation photos).
+- Student's observations and hypotheses about the model's decisions, verbatim:
+
+> **1. 한국 어디에나 있는 전통 건축과 공공시설이 서울로 예측된 거 같아.** 부산 #1(서울 0.99), #2·#3(서울 0.98), #7(서울 0.95), #17·#30·#31·#48 같은 한옥식 건물, 사찰 문, 성문은 모두 서울로 갔어. 궁궐과 한옥을 서울과 연결 지은 것 같은데, 이런 건물은 전국에 있어. 부산 #5(경찰 파출소), #6(관공서), #9(우체국), #11(소방서), #19(학교), #4와 #41(역사 내부)처럼 전국 공통 디자인의 시설도 서울 0.86\~0.98로 갔어. 한글 간판이 보이면 '한국, 그중에서도 서울'로 고르는 경향이 있는 거 같아. 부산 #12·#18·#23의 우산 쓴 노점 시장, 부산 #40·#47의 한글 네온이 있는 밤거리도 같은 경우야.
+>
+> **2. 바다와 항만, 고가도로가 있는 풍경은 도쿄로 예측된 거 같아.** 부산 #8(도쿄 0.94), #20·#21(도쿄 0.91), #22(도쿄 0.90), #25(컨테이너 크레인이 보이는 다리, 도쿄 0.90), #26(바닷가 케이블카 철탑, 도쿄 0.90), #32(도쿄 0.89)는 대시캠 고속도로, 항만, 고가 구조물, 아파트 단지가 보이는 장면이야. 읽을 수 있는 한글이 없으면 대형 항구와 고가 도로가 있는 대도시라는 이유로 도쿄로 간 거 같아. 바다와 항만은 부산의 가장 큰 특징인데 오히려 도쿄 근거로 쓰인 셈이야. 비 오거나 흐린 대시캠 장면인 부산 #29(도쿄 0.90)와 #43(도쿄 0.86)도 글자가 안 보여서 같은 방향으로 간 듯해. 부산 #27(암벽 마애불)이 도쿄로 간 것도, 한글 없는 불교 석조물이 일본처럼 보였기 때문일 수 있어.
+>
+> **3. 지역 단서가 거의 없는 클로즈업, 식당, 무성한 식생은 타이베이로 간 거 같아.** 부산 #15(감자칩 클로즈업, 타이베이 0.91)는 도시 정보가 거의 없어. 부산 #33(울창한 숲 속 석등 계단에 알록달록한 연등, 타이베이 0.88)은 아열대 느낌의 식생과 연등이, 부산 #36(분주한 식당 내부와 빽빽한 메뉴판, 타이베이 0.88)은 야시장 같은 분위기가 이유인 듯해. 이런 장면은 한국이라는 단서마저 약해서 다른 아시아 도시로 빠지기 쉬워.
+>
+> **종합하면** 모델은 '한글이 읽히는가'를 먼저 보고 읽히면 서울, 안 읽히면 도쿄나 타이베이로 갈랐던 거 같아. 부산 #13(옹벽과 비탈, 뒤쪽 고층 아파트), #34와 #44(바닷가 자전거길), #45(산 쪽으로 이어진 전통 건물) 같은 부산다운 지형 단서도 있었지만 판단에 반영되지 않은 듯해. 확률이 높은 것도 한국다움이라는 큰 단서에 확신을 두고 도시 수준의 단서는 보지 않았기 때문일 수 있어.
