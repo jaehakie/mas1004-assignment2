@@ -1,0 +1,14 @@
+[
+  {
+    "model": "baseline_seed1",
+    "float32_prior_vs_float64_changed_predictions": 0,
+    "max_adjusted_logit_gap": 2.941235539566378e-07,
+    "validation_photos": 12077
+  },
+  {
+    "model": "baseline_seed0",
+    "float32_prior_vs_float64_changed_predictions": 0,
+    "max_adjusted_logit_gap": 5.325421330582003e-07,
+    "validation_photos": 12077
+  }
+]

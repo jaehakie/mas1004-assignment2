@@ -548,3 +548,41 @@ End the log with your plan for what to try next.
   in this run under the requested setting.
 - Student interpretation is now recorded. The next change and submission
   method have not been chosen; no new training or Release is queued here.
+
+## 2026-11-08 logit_tau1: student-selected Track A Release preparation
+- Student request (verbatim): "우선 오늘 자정 전에 track A를 제출해보고 싶어. 그 다음 track b를 해도 되려나?"
+- Submitted choice question (verbatim): "오늘 제출할 Track A는 ‘baseline + 사후 보정 τ=1’, Release 제목은 ‘logit adjustment tau=1’로 할까요? 검증 점수가 가장 높은 후보이며, 선택하시면 짧은 Colab 검증을 통과한 뒤 제출하겠습니다."
+- Student answer (verbatim): "이 제출안과 제목 사용 (권장)"
+- Decision: submit baseline training plus fixed tau-1 post-hoc adjustment;
+  proposed next tag track-a-2 and student-selected title
+  "logit adjustment tau=1". Release creation is authorized after verification.
+- Reason/evidence: the student's interpretation in the preceding entry
+  compares seed-0 macro recalls 49.35%, 49.14% and 51.28% and concludes that
+  balanced sampling did not help in this setting. The expanded validation
+  sweep has its highest two-seed mean at tau 1. No leaderboard/final-test
+  outcome has been used to tune this value.
+- changed: restore every baseline training hook, including unweighted
+  permutation sampling, and only in final_model subtract log(training prior)
+  from the existing classifier bias. The architecture, classifier weight,
+  training selection and budget do not change. This is not combined with
+  balanced sampling.
+- The counts are constants matching the accompanying selection.csv, in the
+  official city order: Seoul 11,274, Busan 5,191, Tokyo 13,347, Osaka 7,200,
+  Taipei 7,245. The recipe reads no files and needs only the allowed imports.
+- Candidate canonical SHA256:
+  61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856.
+- Local checks: exact official static recipe checker, syntax, matching
+  selection hash and AST identity of every baseline training hook passed.
+  Existing numeric caches also showed no changed predictions for either
+  baseline seed when evaluating the prior subtraction in float32 versus
+  float64. This numeric check is not a test of a new trained model.
+- Colab queue: real torch classifier-bias equivalence preflight, then the
+  official 20-step quick check under tag logit_tau1_check, seed 0, CUDA.
+  The preflight and training command require a GPU; no local training runs.
+- Full baseline training is not repeated here. Previously recorded full-run
+  adjusted validation measurements remain diagnostic evidence; the official
+  quick check tests the submitted recipe/architecture/export, not its final
+  full-budget leaderboard score. No new full-training row is claimed.
+- Pending: import and verify the new Colab output, commit the result evidence,
+  create track-a-2 with recipe.py and selection.csv, and verify the published
+  assets and time before 2026-11-09 00:00 KST. Then proceed to Track B.

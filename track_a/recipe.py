@@ -14,17 +14,18 @@ What you cannot change, because official.py decides it:
   - the image size the model sees, 224 x 224
   - mixed precision (float16), and the seed
 
-This is the recipe the starter code came with. It is the baseline on the
-leaderboard.
+Baseline training with a fixed tau=1 logit prior adjustment after training.
+The selected-photo counts below match the accompanying selection.csv.
 """
-
-import collections
 
 import torch
 import torch.nn.functional as F
 from torchvision import transforms as T
 
 BATCH_SIZE = 64
+LOGIT_TAU = 1.0
+# City order fixed by official.py: seoul, busan, tokyo, osaka, taipei.
+TRAINING_COUNTS = (11274, 5191, 13347, 7200, 7245)
 
 
 def train_transform():
@@ -49,8 +50,7 @@ def sample_weights(cities, paths):
     is drawn twice as often as one with weight 1. Return None to go through
     the selection in a new random order each time, every photo once per round.
     """
-    counts = collections.Counter(cities)
-    return [1.0 / counts[city] for city in cities]
+    return None
 
 
 def make_optimizer(model):
@@ -82,5 +82,9 @@ def on_step(step, total_steps, model, optimizer):
 
 
 def final_model(model):
-    """The model to hand in, at the end of training. It must still be the same ResNet18."""
+    """Fold z - tau*log(prior) into the existing classifier bias once."""
+    with torch.no_grad():
+        counts = model.fc.bias.new_tensor(TRAINING_COUNTS)
+        prior = counts / counts.sum()
+        model.fc.bias.sub_(LOGIT_TAU * prior.log())
     return model

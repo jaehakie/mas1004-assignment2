@@ -1,0 +1,31 @@
+{
+  "status": "local_static_checks_passed_official_quick_pending",
+  "baseline_recipe_sha256": "17ac485223fa61741f2c63aeb1c91bc283c88c6b7aaa8f02fdb3e86924ff29c9",
+  "candidate_recipe_sha256": "61846a0692ccd893703a514dfbd84ac5298e46b2b6957fe0edfe9bd42c444856",
+  "selection_sha256": "365384496af87eef64262c7d69ea2e6c0b466b4a54ae5e6b2da81f533db0bf0e",
+  "baseline_training_hook_ast_sha256": {
+    "train_transform": "dda3a668c4dbdc2afc173e8a9023a4ef1e70be4878167666e8b9aeb417f540a0",
+    "sample_weights": "be071efcec7dddb950ef6113a8d4f0d3002a38be3041f7e7fdb1bb672a345b06",
+    "make_optimizer": "7de15364c5ce0022a26ea0ece809f771a95bbca05adc42824c3040531267aca7",
+    "make_scheduler": "d359f0745a7c57581c7b6d6f70f860fb878d8c2f5cd25ec4b31f8afe7be5d24a",
+    "mix": "6aa6d6dc52bd6d6506bb4ae507f1e9310dca168d60e2b1c8febd7cc9e645c0f5",
+    "loss_fn": "dbf9f294f2c7ec718891ea59325a96a9f2e0e3dce918be4955a32091d9510aea",
+    "on_step": "a1eb9a77d684cd64d0d66453d52db5cd51d1cc53dd3b2f255bb31072d410e708"
+  },
+  "tau": 1.0,
+  "city_order": [
+    "seoul",
+    "busan",
+    "tokyo",
+    "osaka",
+    "taipei"
+  ],
+  "training_counts": [
+    11274,
+    5191,
+    13347,
+    7200,
+    7245
+  ],
+  "note": "Pure code checks locally; real torch head and official quick must run on Colab before Release."
+}

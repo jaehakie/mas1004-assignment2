@@ -1,4 +1,2 @@
-python src/audit_balanced.py --seed 0
-python src/official.py --quick --tag balanced_check --seed 0 --device cuda
-python src/official.py --tag balanced --seed 0 --device cuda
-python src/eval_balanced.py --batch 32 --workers 2 --ort-threads 2
+python src/check_logit_tau1.py
+python src/official.py --quick --tag logit_tau1_check --seed 0 --device cuda
