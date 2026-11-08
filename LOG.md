@@ -532,3 +532,19 @@ End the log with your plan for what to try next.
   has been invented for the student and no new release has been made.
 - Next: record the student's interpretation and chosen next change. The
   current working recipe remains balanced; the existing release is unchanged.
+
+## 2026-11-08 Student interpretation of balanced sampling (verbatim)
+
+균형 샘플링은 이번 설정에서는 효과가 없었다고 봐. seed 0 기준으로 baseline 49.35%, 균형 샘플링 49.14%, 사후 보정(τ=1) 51.28%야. 샘플링은 −0.21p로 baseline과 구분이 안 되고, 사후 보정은 +1.93p로 앞서 두 seed 평균에서 본 +1.84p와 비슷하게 재현됐어.
+
+### Measurement scope (agent notes)
+- This records the student's interpretation without changing their wording.
+- Baseline seed 0 and its tau-1 prediction numbers reuse the same saved model
+  and logits already included in the earlier two-seed comparison. They are
+  not a new independent replication of post-hoc adjustment; the balanced
+  seed-0 training is the new run.
+- A -0.21 pp observed difference from one balanced seed establishes neither
+  equivalence nor a statistically significant difference. No gain was observed
+  in this run under the requested setting.
+- Student interpretation is now recorded. The next change and submission
+  method have not been chosen; no new training or Release is queued here.
