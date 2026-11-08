@@ -1,1 +1,4 @@
-python src/eval_logit_adjustment.py --models results/baseline_seed0/model.onnx results/baseline_seed1/model.onnx --taus 0 0.5 1 --tag prior_adjust_baseline_v1 --bins 15 --batch 32 --workers 2 --ort-threads 2
+python src/audit_balanced.py --seed 0
+python src/official.py --quick --tag balanced_check --seed 0 --device cuda
+python src/official.py --tag balanced --seed 0 --device cuda
+python src/eval_balanced.py --batch 32 --workers 2 --ort-threads 2

@@ -367,3 +367,103 @@ End the log with your plan for what to try next.
 - These diagnostic evaluations do not add training rows to experiments.csv.
   The Track A recipe and selection remain unchanged, and no new release was made.
 - The student's interpretation and choice of the next method or tau are pending.
+
+## 2026-11-08 Student interpretation of prior adjustment and next experiment (verbatim)
+
+내 해석은 이래. **사후 보정은 쏠림을 줄였지만, 모델이 도시를 더 잘 구분하게 된 건 아니야.** 그냥 판정 경계를 옮긴 거에 가까워 보여.
+
+**1. 도시별 변화가 거의 제로섬이야.**
+
+- 부산 +12.3p, 오사카 +10.0p, 타이베이 +7.4p가 올랐고, 도쿄 −12.3p, 서울 −8.3p가 내려갔어.
+- 평균하면 macro recall만 +1.84p 오르고 전체 정답률은 −1.05p 내려가. 큰 도시에서 잃은 만큼 작은 도시에서 얻었다는 뜻이야.
+- 도시별 recall 평균이 표의 macro recall과 맞아떨어져서 숫자는 일관돼 보여.
+
+**2. 오류 이동 표는 내가 예상한 한계를 그대로 보여줘.**
+
+- τ=1에서 기존 오답을 고친 건 607건인데 새로 생긴 오답은 733건이야(seed 0). seed 1도 576 대 704로 같은 방향이야.
+- 다른 도시로 옮겨 갔지만 여전히 틀린 것도 696건이나 돼. 도시 단서가 없는 사진은 prior를 바꿔도 맞히지 못한다는 얘기야.
+
+**3. 내 가설 중 일부는 약해졌어.**
+
+- 내가 틀린 사진들의 확률이 0.85\~0.99로 높다는 걸 사전확률 편향 신호로 읽었는데, 오답 평균 확률은 0.5388에서 0.5173으로 거의 안 줄었고 ECE도 0.0879에서 0.0772로 조금만 나아졌어.
+- 높은 확신으로 틀리는 건 prior 때문만은 아니고, 한글·한자 같은 표면 단서에 과신하는 영향이 더 커 보여.
+- 다만 내가 본 건 확률이 가장 높은 오답 48장이라 표의 전체 평균과 같은 기준은 아니야. 이 부분은 단정하지 않는 게 좋아.
+
+**4. τ=0.5와 τ=1 차이는 아직 확신하기 어려워.**
+
+- macro recall이 0.5115와 0.5166이고 ECE는 0.0776과 0.0772로 거의 같아. seed가 2개뿐이라 이 정도 차이는 노이즈일 수 있어.
+- 더 신경 쓰이는 건 τ=1이 내가 돌린 값 중 가장 큰 값이라 탐색 범위 끝에서 최고라는 점이야. 더 큰 τ에서 더 오를지, 도쿄·서울 손실이 더 커질지 아직 몰라.
+
+**다음 단계 제안**
+
+- **먼저 τ를 더 촘촘하게 훑어봐(0.75, 1.25, 1.5, 2.0 정도).** 재학습이 필요 없어서 비용이 거의 없고, 피크가 τ=1 근처인지 확인할 수 있어. τ는 반드시 검증셋에서 고르고 최종 점수에는 쓰지 않는 게 안전해.
+- **그다음 균형 샘플링을 별도 실험으로 돌려보는 걸 추천해.** 사후 보정은 마지막 판정만 바꾸고 표현은 안 바꾸니까, 샘플링은 특징 학습 자체에 영향을 줄 가능성이 있어서 비교 가치가 있어.
+- 두 방법을 같이 쓰면 안 돼. 균형 샘플링 뒤에는 prior가 이미 균등에 가까워서 사후 보정을 또 하면 과보정이 돼. 균형 샘플링 모델은 τ=0부터 다시 확인하는 게 맞아.
+- 개선이 둘 다 1\~2p 수준으로 작으면, 병목은 prior가 아니라 입력 정보라는 쪽에 무게를 둘 만해. 그때는 해상도나 글자 단서를 쓰는 방법을 보는 게 나아.
+
+제출용 τ는 sweep 결과를 보고 정해도 늦지 않아. 지금은 τ=1을 잠정값으로 두는 정도가 적당해 보여.
+
+### Implementation and interpretation boundaries (agent notes)
+- The post-hoc experiment changes only output decision boundaries, with fixed
+  learned weights. It cannot demonstrate improved feature learning; it also
+  does not establish that the existing model uses no city-level features.
+- The recorded user interpretation is a hypothesis. Surface/text shortcuts
+  and missing information were not causally tested by this numeric sweep.
+- These comparisons are deterministic on the fixed cached logits and validation
+  set. Two training seeds do not establish generalization or significance.
+- Tune tau only on the development/validation set, then freeze the chosen
+  value and apply it at final inference if that method is selected. Do not tune
+  using final-test or leaderboard feedback. No submission tau is finalized here.
+- For the requested balanced model, evaluate unadjusted logits (tau 0).
+  Reusing the raw training-count correction on that model would not describe
+  its effective sampling prior. The two methods are kept separate in this test.
+- Track A image size is fixed at 224. A later image-size experiment belongs to
+  Track B and needs a separate student choice and a model-limit check.
+
+## 2026-11-08 prior_adjust_baseline_v2: expanded numeric-cache sweep
+- Reused the two exported baseline logit caches. No local model inference,
+  image processing, training or dependency installation occurred.
+- Evaluated tau 0, 0.5, 0.75, 1, 1.25, 1.5 and 2. The original three settings
+  reproduce v1 metrics; all 169,078 model/tau prediction cases were independently
+  checked from exported prediction CSVs, including confusion matrices,
+  city recalls, accuracy, ECE, confidence and error transitions.
+- Means below average the two model-specific measurements:
+
+| Tau | Macro recall | Overall accuracy | ECE (15 bins) |
+| --- | --- | --- | --- |
+| 0 | 0.498212 | 0.524675 | 0.087887 |
+| 0.5 | 0.511549 | 0.523557 | 0.077591 |
+| 0.75 | 0.513032 | 0.518009 | 0.077642 |
+| 1 | 0.516638 | 0.514159 | 0.077232 |
+| 1.25 | 0.516385 | 0.506459 | 0.082115 |
+| 1.5 | 0.515150 | 0.498510 | 0.087753 |
+| 2 | 0.512718 | 0.482156 | 0.102763 |
+
+- The highest mean validation macro recall among these settings is at tau 1,
+  now inside the tested range. Tau 1 exceeds tau 1.25 by only 0.025288
+  percentage points in this mean. Seed 0 peaks at tau 1.25; seed 1 at tau 1.
+- Higher tau continues trading Seoul/Tokyo recall for Busan/Osaka/Taipei
+  recall. From tau 1 to 2 the mean overall accuracy falls and ECE increases.
+- Evidence: checks/prior_adjust_baseline_v2/report.json, metrics.csv,
+  verified_summary.json, summary.md and summary.png. Reproduction:
+  `src/sweep_cached_logits.py` with the existing original logit caches.
+- No training rows or Release were added by this diagnostic.
+
+## 2026-11-08 balanced: requested experiment prepared; Colab execution pending
+- Student reason: the verbatim proposal above asks for class-balanced sampling
+  as a separate comparison because it can affect learning, unlike post-hoc
+  adjustment. No additional data curation or recipe change was requested.
+- Recipe change: add collections.Counter and return inverse city-frequency
+  sample weights. The theoretical city drawing probabilities are 20% each;
+  the official sampler draws with replacement, so realized counts fluctuate.
+- All 44,257 selected rows are retained. The other recipe functions, batch
+  size 64 and official training budget are unchanged. No post-hoc correction
+  is applied to the balanced model.
+- Tag balanced, seed 0 only. Colab queue: audit expected/realized sampler
+  counts, official quick check, official full-budget run, unadjusted ONNX
+  evaluation against matched baseline seed 0 and five new mistake sheets.
+- CUDA is required for the training commands; the preparation audit stops
+  before training if the Colab GPU is unavailable.
+- Local static-rule, syntax and sampler arithmetic checks are preparation
+  checks only. The official quick check and full training remain pending on
+  Colab; no new score is claimed and experiments.csv still has two baseline rows.
