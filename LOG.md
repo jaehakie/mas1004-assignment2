@@ -124,3 +124,50 @@ End the log with your plan for what to try next.
 > - 항공사 로고가 한국 항공사인데도 도시로 이어지지 않았어.
 >
 > **종합하면** 앞서 본 부산 오분류와 거울상이야. 부산 사진은 한글이 읽히면 서울로 갔고, 서울 사진은 한글이 읽혀도 역 표지판이면 부산, 글자가 흐리면 도쿄로 갔어. 모델이 '한국 도시'까지는 어느 정도 좁혀도 서울과 부산을 가르는 도시 수준의 단서는 거의 쓰지 못하는 것 같아. 서울은 평범한 도심 풍경이 많아서 결과적으로 도쿄로 가장 많이 빠진 듯해.
+
+## 2026-11-08 Baseline mistake observations: Tokyo
+- Sheet viewed: results/curate/mistakes_baseline_seed0_tokyo_00.png (48 validation photos).
+- Student's observations and hypotheses about the model's decisions, verbatim:
+
+> **서울로 간 사진 (28장): 비 오는 날 넓은 가로수 거리와 현대적인 상점가야.**
+>
+> - 도쿄 #2·#4·#11(서울 0.97, 0.96, 0.94)은 비 내리는 대로변에 우산 쓴 보행자, 유리 외벽 상가, 노란 점자블록이 보여.
+> - 도쿄 #17·#25·#32·#37·#39·#40·#41(서울 0.88\~0.93)도 젖은 길에 앙상한 가로수, 우산, 점자블록이 있는 비슷한 장면이야.
+> - 이런 장면에서는 일본어 글자가 크게 안 보이면 서울로 가는 경향이 있는 거 같아.
+> - 도쿄 #3(캐논 EOS World 전시, 서울 0.96), #7(출근길 인파, 서울 0.96), #33(전시된 차량, 서울 0.89), #47(실내 행사장, 서울 0.88)은 로마자 위주이거나 일본 단서가 약한 장면이야.
+>
+> **오사카로 간 사진 (17장): 네온 간판이 빽빽한 번화가와 아케이드 상점가야.**
+>
+> - 도쿄 #1(오사카 0.97)과 #15(0.94)는 붉은 기둥과 천장이 있는 아케이드 상점가야. 오사카 상점가와 닮았는데 실제로는 도쿄야.
+> - 도쿄 #16·#18·#19·#26·#30·#31(오사카 0.91\~0.94)은 네온사인과 일본어 간판이 가득한 밤거리(아키하바라 같은 곳)야.
+> - 도쿄 #20(붉은 도리이와 신사, 오사카 0.92)과 #12(식당 간판 거리, 오사카 0.94)도 일본 전통 요소가 오사카로 갔어.
+> - 도쿄 #24(신칸센, 오사카 0.92)는 철도 설비만 보고 오사카로 간 거 같아.
+> - 오사카는 일본이라는 건 맞췄지만 도쿄/오사카를 가르는 단서는 못 쓴 모양이야.
+>
+> **타이베이로 간 사진 (2장)**
+>
+> - 도쿄 #9(흐린 거리, 타이베이 0.95)와 #27(한자로 크게 쓴 노란 밴, 타이베이 0.91)이야. 한자 간판이 번체자 문화권과 연결된 듯해.
+>
+> **부산으로 간 사진 (2장)**
+>
+> - 도쿄 #8(색이 번진 이미지, 부산 0.96)과 #36(야경 속 다리와 강, 부산 0.90)이야. #8은 화질 문제로 보이고, #36은 강과 다리 야경이 부산 같아 보였을 수 있어.
+>
+> **눈에 띄는 점**은 도쿄 #14·#38·#42·#43 같은 도쿄 스카이트리가 있는 전경, 도쿄 게이트 브리지, 하늘에서 본 도시 전경도 오사카로 갔다는 거야. 도쿄 고유 랜드마크가 분명한 사진도 놓친 거 같아.
+
+### Mechanical cross-check against the sheet CSV
+- Source: results/curate/mistakes_baseline_seed0_tokyo_00.csv.
+- Among these 48 displayed photos, prediction counts are Seoul 28, Osaka 16,
+  Taipei 2 and Busan 2. These are counts for this sheet, not the full validation set.
+- The student's original wording above is preserved. The CSV gives the following
+  labels for referenced photo numbers whose labels or probabilities differ:
+
+| Photo number | Prediction in CSV |
+| --- | --- |
+| 30 | busan 0.90 |
+| 31 | seoul 0.90 |
+| 36 | seoul 0.88 |
+| 37 | osaka 0.88 |
+| 42 | seoul 0.88 |
+| 47 | seoul 0.87 |
+
+- Numerical summaries in the report should use the CSV labels and counts.
