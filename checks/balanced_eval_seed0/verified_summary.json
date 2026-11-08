@@ -1,0 +1,212 @@
+{
+  "verified": true,
+  "prediction_cases_independently_checked": 12077,
+  "numeric_logits_checked_without_inference": true,
+  "matched_training_seed": 0,
+  "balanced_official_score": 0.4912,
+  "balanced_onnx_score": 0.4913593065372533,
+  "onnx_minus_official_rounded_score": 0.0001593065372532676,
+  "delta_macro_vs_baseline_tau0_pp": -0.21191334985511956,
+  "delta_accuracy_vs_baseline_tau0_pp": -1.879605862383038,
+  "delta_macro_vs_baseline_tau1_pp": -2.141495451738079,
+  "delta_city_recall_vs_baseline_tau0_pp": {
+    "seoul": -9.322381930184804,
+    "busan": 4.964028776978418,
+    "tokyo": -8.271064158721975,
+    "osaka": 6.531954887218045,
+    "taipei": 5.037895675434678
+  },
+  "error_transitions_vs_baseline_tau0": {
+    "corrected_baseline_errors": 1149,
+    "new_errors_on_baseline_correct": 1376,
+    "rerouted_still_wrong": 1336,
+    "unchanged_still_wrong": 3285
+  },
+  "mistake_sheet_prediction_counts": {
+    "seoul": {
+      "busan": 14,
+      "osaka": 5,
+      "taipei": 16,
+      "tokyo": 13
+    },
+    "busan": {
+      "seoul": 23,
+      "tokyo": 14,
+      "taipei": 4,
+      "osaka": 7
+    },
+    "tokyo": {
+      "seoul": 19,
+      "busan": 1,
+      "osaka": 20,
+      "taipei": 8
+    },
+    "osaka": {
+      "seoul": 7,
+      "tokyo": 31,
+      "busan": 2,
+      "taipei": 8
+    },
+    "taipei": {
+      "seoul": 19,
+      "osaka": 8,
+      "tokyo": 18,
+      "busan": 3
+    }
+  },
+  "sampling_audit": {
+    "tag": "balanced",
+    "seed": 0,
+    "selection_counts": {
+      "busan": 5191,
+      "osaka": 7200,
+      "seoul": 11274,
+      "taipei": 7245,
+      "tokyo": 13347
+    },
+    "recipe_sha": "7eb0f0acc97f",
+    "selection_sha": "365384496af8",
+    "sampling": "inverse city frequency; weighted draws with replacement",
+    "expected_city_probability": {
+      "seoul": 0.2,
+      "busan": 0.2,
+      "tokyo": 0.2,
+      "osaka": 0.2,
+      "taipei": 0.2
+    },
+    "realized_city_draws": {
+      "tokyo": 50124,
+      "taipei": 49939,
+      "seoul": 50023,
+      "busan": 50153,
+      "osaka": 49745
+    },
+    "draws": 249984,
+    "batch_size": 64,
+    "post_hoc_tau": 0,
+    "commit": "78f24e0"
+  },
+  "zip_sha256": "3438f5dc0cf18609c1897210a95d03ae5def9c0472e5b08c576ed39a8cee232b",
+  "comparisons": [
+    {
+      "method": "baseline_tau0",
+      "macro_recall": 0.4934784400358045,
+      "accuracy": 0.5222323424691563,
+      "ece": 0.09018761005586672,
+      "mean_confidence_on_current_errors": 0.5392999355569139,
+      "per_city_recall": {
+        "seoul": 0.579876796714579,
+        "busan": 0.39568345323741005,
+        "tokyo": 0.6348879154856996,
+        "osaka": 0.3576127819548872,
+        "taipei": 0.49933125278644674
+      },
+      "pair_errors": {
+        "osaka_to_tokyo": {
+          "count": 881,
+          "rate_among_true_source_city": 0.41400375939849626
+        },
+        "tokyo_to_osaka": {
+          "count": 441,
+          "rate_among_true_source_city": 0.11363050760113373
+        },
+        "busan_to_seoul": {
+          "count": 421,
+          "rate_among_true_source_city": 0.30287769784172663
+        },
+        "seoul_to_busan": {
+          "count": 183,
+          "rate_among_true_source_city": 0.07515400410677618
+        },
+        "taipei_to_tokyo": {
+          "count": 526,
+          "rate_among_true_source_city": 0.2345073562193491
+        },
+        "taipei_to_seoul": {
+          "count": 403,
+          "rate_among_true_source_city": 0.17967008470798038
+        }
+      }
+    },
+    {
+      "method": "baseline_tau1",
+      "macro_recall": 0.5127742610546341,
+      "accuracy": 0.5117992879026249,
+      "ece": 0.07860797659381363,
+      "mean_confidence_on_current_errors": 0.5151754038486435,
+      "per_city_recall": {
+        "seoul": 0.49856262833675563,
+        "busan": 0.5194244604316547,
+        "tokyo": 0.5073434681783046,
+        "osaka": 0.46475563909774437,
+        "taipei": 0.5737851092287115
+      },
+      "pair_errors": {
+        "osaka_to_tokyo": {
+          "count": 571,
+          "rate_among_true_source_city": 0.2683270676691729
+        },
+        "tokyo_to_osaka": {
+          "count": 731,
+          "rate_among_true_source_city": 0.1883535171347591
+        },
+        "busan_to_seoul": {
+          "count": 297,
+          "rate_among_true_source_city": 0.21366906474820144
+        },
+        "seoul_to_busan": {
+          "count": 367,
+          "rate_among_true_source_city": 0.15071868583162218
+        },
+        "taipei_to_tokyo": {
+          "count": 326,
+          "rate_among_true_source_city": 0.14534106107891218
+        },
+        "taipei_to_seoul": {
+          "count": 302,
+          "rate_among_true_source_city": 0.13464110566205975
+        }
+      }
+    },
+    {
+      "method": "balanced_tau0",
+      "macro_recall": 0.4913593065372533,
+      "accuracy": 0.5034362838453258,
+      "ece": 0.1028391413181189,
+      "mean_confidence_on_current_errors": 0.5373041938681378,
+      "per_city_recall": {
+        "seoul": 0.486652977412731,
+        "busan": 0.44532374100719424,
+        "tokyo": 0.5521772738984798,
+        "osaka": 0.42293233082706766,
+        "taipei": 0.5497102095407935
+      },
+      "pair_errors": {
+        "osaka_to_tokyo": {
+          "count": 668,
+          "rate_among_true_source_city": 0.31390977443609025
+        },
+        "tokyo_to_osaka": {
+          "count": 717,
+          "rate_among_true_source_city": 0.18474619943313578
+        },
+        "busan_to_seoul": {
+          "count": 328,
+          "rate_among_true_source_city": 0.23597122302158274
+        },
+        "seoul_to_busan": {
+          "count": 235,
+          "rate_among_true_source_city": 0.09650924024640657
+        },
+        "taipei_to_tokyo": {
+          "count": 384,
+          "rate_among_true_source_city": 0.17119928666963888
+        },
+        "taipei_to_seoul": {
+          "count": 323,
+          "rate_among_true_source_city": 0.1440035666518056
+        }
+      }
+    }
+  ]
+}

@@ -467,3 +467,68 @@ End the log with your plan for what to try next.
 - Local static-rule, syntax and sampler arithmetic checks are preparation
   checks only. The official quick check and full training remain pending on
   Colab; no new score is claimed and experiments.csv still has two baseline rows.
+
+## 2026-11-08 balanced (Track A): completed Colab run and verified comparison
+- changed: only inverse city-frequency sample weights, as recorded in the
+  preceding preparation entry. Selection remains all 44,257 training rows;
+  batch size 64, ResNet18, augmentation and optimizer settings are unchanged.
+- why: the student's verbatim proposal above requests a separate balanced
+  sampling experiment to compare a change to learning against post-hoc
+  adjustment. The balanced model is evaluated without logit correction (tau 0).
+- official validation: 0.4912 (matched baseline seed 0: 0.4933).
+- training: seed 0, CUDA, 3,906 steps / 249,984 photo draws, 2,088.0 seconds
+  (34.8 minutes), revision 78f24e0, recipe SHA prefix 7eb0f0acc97f and selection
+  SHA prefix 365384496af8. Completed at 2026-11-08 21:04:53 KST.
+- official quick check: 20 steps / 1,280 draws, validation 0.2821, before the
+  full run; export gaps were below 0.001 for both quick and full models.
+- sampler audit: expected city probability 20% each; realized counts were
+  Seoul 50,023, Busan 50,153, Tokyo 50,124, Osaka 49,745 and Taipei 49,939.
+  The counts sum to the official 249,984 draws.
+- diagnostic: all 12,077 validation photos, same ONNX preprocessing/backend
+  as baseline comparisons, 15-bin ECE. Colab inference took 530.02 seconds.
+  Full training-script and diagnostic scores differ slightly because of
+  numeric inference paths and rounding; compare like with like below.
+
+| Method (seed 0 throughout) | ONNX macro recall | Overall accuracy | ECE | Mean confidence on current errors |
+| --- | --- | --- | --- | --- |
+| Baseline, tau 0 | 0.493478 | 0.522232 | 0.090188 | 0.539300 |
+| Baseline, tau 1 | 0.512774 | 0.511799 | 0.078608 | 0.515175 |
+| Balanced, tau 0 | 0.491359 | 0.503436 | 0.102839 | 0.537304 |
+
+| City | Baseline tau 0 recall | Baseline tau 1 recall | Balanced tau 0 recall | Balanced minus baseline tau 0 (pp) |
+| --- | --- | --- | --- | --- |
+| Seoul | 57.99% | 49.86% | 48.67% | -9.32 |
+| Busan | 39.57% | 51.94% | 44.53% | +4.96 |
+| Tokyo | 63.49% | 50.73% | 55.22% | -8.27 |
+| Osaka | 35.76% | 46.48% | 42.29% | +6.53 |
+| Taipei | 49.93% | 57.38% | 54.97% | +5.04 |
+
+- Measured differences: balanced macro recall is -0.211913 pp versus baseline
+  tau 0 and -2.141495 pp versus baseline tau 1. Overall accuracy is -1.879606 pp
+  versus baseline tau 0; ECE is higher by 0.012651531.
+- Error transitions versus baseline seed 0, tau 0: 1,149 old errors corrected,
+  1,376 new errors, 1,336 rerouted but still wrong, 3,285 unchanged wrong.
+- Independent verification checked all 12,077 exported prediction cases,
+  confusion matrices, city recalls, accuracy, confidence, ECE bins, pair
+  error rates and transitions. Tau-0 probabilities were also reconstructed
+  directly from exported numeric logits. No model or raw dataset was loaded
+  locally, and no local training environment was installed.
+- The five new top-48 mistake sheets were checked against the exact validation
+  predictions; indexes and previews are under results/curate/ with prefix
+  mistakes_balanced_seed0_. These are selected high-confidence mistakes,
+  not estimates of full validation city-confusion frequencies.
+- Evidence: checks/balanced_seed0.json, checks/balanced_check_seed0.json,
+  checks/balanced_eval_seed0/report.json, metrics.csv, confidence_bins.csv,
+  confusion.csv, verified_summary.json, summary.md and summary.png.
+- Original output: results/colab_logs/1108_202032_audit_balanced.txt,
+  1108_202310_official_balanced_check_seed0.txt,
+  1108_202604_official_balanced_seed0.txt and 1108_210454_eval_balanced.txt.
+- experiments.csv now has three full-training rows: baseline seeds 0 and 1,
+  and balanced seed 0. Quick and diagnostic runs are not training rows.
+- Scope: one balanced training seed only. These measurements do not establish
+  statistical significance or identify whether the bottleneck is input
+  information, representation learning or another training choice.
+- what it means: student interpretation requested; pending. No interpretation
+  has been invented for the student and no new release has been made.
+- Next: record the student's interpretation and chosen next change. The
+  current working recipe remains balanced; the existing release is unchanged.

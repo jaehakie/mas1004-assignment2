@@ -1,3 +1,4 @@
 "finished","track","tag","seed","official_budget","budget","val_score","seoul","busan","tokyo","osaka","taipei","train_seconds","device","selection","recipe_sha","selection_sha","commit"
 "2026-11-08T15:42:52","A","baseline","0","True","249984","0.4933","0.5799","0.3957","0.6346","0.3571","0.4993","2154.5","cuda","selection.csv, 44257 rows","17ac485223fa","365384496af8","de14ca6"
 "2026-11-08T16:21:29","A","baseline","1","True","249984","0.5028","0.6062","0.4187","0.6143","0.3548","0.5203","2073.4","cuda","selection.csv, 44257 rows","17ac485223fa","365384496af8","de14ca6"
+2026-11-08T21:04:53,A,balanced,0,True,249984,0.4912,0.4858,0.4453,0.5522,0.4234,0.5493,2088.0,cuda,"selection.csv, 44257 rows",7eb0f0acc97f,365384496af8,78f24e0
