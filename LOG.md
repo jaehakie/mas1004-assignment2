@@ -839,3 +839,42 @@ End the log with your plan for what to try next.
   results, finish the long report together, and have the student independently
   write/submit the short report. Both PDF reports are due on Cyber Campus
   by 2026-11-10 22:00 KST.
+
+## 2026-11-09 Student interpretation of EfficientNet-B3 (verbatim)
+
+로그에는 이렇게 구분해서 적으면 좋겠어.
+- 관찰: B3·300px는 보정 전 macro recall 51.50%로 이전 모델보다 약 1.7p 높았다. 사후 보정은 τ=0.5, 1에서 macro recall이 +1.13p, +1.50p 올랐고 정확도는 −0.56p, −1.94p였다.
+- 해석(가설): 백본 교체의 이득은 작고, 도시 단서가 없는 사진이 병목일 가능성이 있다. τ=1은 이전 모델보다 과보정 경향이 있고 τ=0.5가 가성비가 좋아 보인다.
+- 미확인: 어느 변경이 효과를 냈는지, 도시별 recall 변화, seed 간 분산.
+
+### Numeric context and limits (agent notes, separate from the student's words)
+- The approximate +1.7 pp comparison is B3 tau 0 (51.495218%) minus the
+  earlier Track A baseline's two-seed mean (49.821232%): +1.673985 pp.
+  It is not a controlled backbone-only comparison. Training budget, input
+  size, fine-tuning protocol, EMA/checkpoint selection and number of seeds
+  differ; the default Track B ResNet18 baseline was never run.
+- Recomputing from unrounded values gives tau-0.5 macro gain +1.138359 pp
+  (rounds to +1.14 pp). The student's +1.13 pp is the difference between
+  the displayed 52.63% and 51.50%. Tau-1 macro gain is +1.502655 pp;
+  accuracy changes are -0.563054 pp and -1.937567 pp respectively.
+- The student's bottleneck, backbone-gain and overcorrection interpretations
+  remain hypotheses. Within the tested grid, tau 1 has highest macro recall;
+  tau 0.5 has better ordinary accuracy and lower ECE than tau 1. These
+  different objectives do not by themselves establish causal overcorrection.
+- City recall changes can already be computed from the existing outputs.
+  The values below add factual context without replacing the student's
+  interpretation or claiming that the corresponding photos were reviewed.
+
+| City | Recall change tau 0 to 0.5 (pp) | Recall change tau 0 to 1 (pp) |
+| --- | --- | --- |
+| Seoul | -5.54 | -11.70 |
+| Busan | +6.62 | +13.88 |
+| Tokyo | -7.32 | -15.05 |
+| Osaka | +7.57 | +13.16 |
+| Taipei | +4.37 | +7.22 |
+
+- Ingredient-level effects and B3 seed-to-seed variation remain unmeasured.
+  Evidence: checks/b_effb3_transfer/interpretation_numeric_context.json,
+  result.json and the prior Track A diagnostic report.
+- This request changes the log only. The published track-b-1 model retains
+  its already selected tau 1; no new training or Release was started.

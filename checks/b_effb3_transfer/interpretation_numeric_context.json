@@ -1,0 +1,45 @@
+{
+  "b3_raw_minus_A_baseline_two_seed_mean_pp": 1.6739850699693415,
+  "A_baseline_two_seed_mean": 0.49821232455186504,
+  "rows": [
+    {
+      "tau": 0.0,
+      "delta_macro_pp": 0.0,
+      "delta_accuracy_pp": 0.0,
+      "ece": 0.029435399263510763,
+      "city_recall_delta_pp": {
+        "seoul": 0.0,
+        "busan": 0.0,
+        "tokyo": 0.0,
+        "osaka": 0.0,
+        "taipei": 0.0
+      }
+    },
+    {
+      "tau": 0.5,
+      "delta_macro_pp": 1.1383587008602647,
+      "delta_accuracy_pp": -0.5630537385112211,
+      "ece": 0.024854070780967463,
+      "city_recall_delta_pp": {
+        "seoul": -5.544147843942504,
+        "busan": 6.618705035971223,
+        "tokyo": -7.3177016232929715,
+        "osaka": 7.565789473684214,
+        "taipei": 4.369148461881411
+      }
+    },
+    {
+      "tau": 1.0,
+      "delta_macro_pp": 1.5026552975574536,
+      "delta_accuracy_pp": -1.9375672766415497,
+      "ece": 0.03208872331953638,
+      "city_recall_delta_pp": {
+        "seoul": -11.70431211498974,
+        "busan": 13.884892086330936,
+        "tokyo": -15.047668126771452,
+        "osaka": 13.157894736842108,
+        "taipei": 7.2224699063753945
+      }
+    }
+  ]
+}
