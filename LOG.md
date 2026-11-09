@@ -762,3 +762,59 @@ End the log with your plan for what to try next.
 - Pending: execute on Colab once GPU is available, inspect measured limits
   and returned results, get the student's result interpretation, then publish
   the already requested first valid Track B Release with the selected title.
+
+## 2026-11-09 b_effb3_transfer (Track B): verified returned model
+- changed: the student-selected researched EfficientNet-B3 300px transfer
+  protocol in the preceding entry; no extra photographs were added.
+- why: the student's verbatim request was to replace the default ResNet18
+  with a research-informed candidate for stronger city-classification
+  performance within approximately 1–2 hours of free Colab GPU time.
+- Smoke test completed all 20 full-backprop steps at 300px, exported the
+  model and passed the ONNX size/operation checks before the real run.
+- Real run: revision 1582429, seed 0, Tesla T4, 10,503 steps / 336,096 photo
+  draws / 7.594360 epochs. Stopped at the planned active training-time limit,
+  then finished validation/export; total recorded active time including those
+  final steps was 6,303.5 seconds (105.06 minutes).
+- The selected EMA checkpoint is from epoch 7.0, not the last partial epoch.
+  Selection used development-set macro recall. No claim of eight completed
+  epochs, an independent test score or a controlled single-change ablation
+  is made. The default Track B ResNet18 baseline remains unrun.
+
+| Tau | Validation macro recall | Overall accuracy | ECE (15 bins) |
+| --- | --- | --- | --- |
+| 0 | 0.514952 | 0.541691 | 0.029435 |
+| 0.5 | 0.526336 | 0.536060 | 0.024854 |
+| 1 | 0.529979 | 0.522315 | 0.032089 |
+
+- Selected tau 1 by the predeclared macro-recall criterion, not accuracy or
+  ECE. The training experiment row records validation 0.5300. These full-set
+  diagnostics use CUDA float32 logits on official grader preprocessing;
+  ONNX CPU results may differ slightly. No leaderboard result exists yet.
+- Selected-model city recalls: Seoul 0.468583, Busan 0.524460, Tokyo 0.477970,
+  Osaka 0.532425, Taipei 0.646456.
+- Final ONNX: 10,660,275 stored parameters, 1.825613072 GMAC, 42,767,167 bytes,
+  opset 17, no refused operations. Export equivalence check passed.
+  The stored-parameter count differs from trainable-parameter arithmetic
+  because the exported graph fuses operations and stores constants differently.
+- Official check_submission.py --no-val completed with
+  "format and limits: OK" at revision 1582429. No local model execution,
+  image processing, training or ML dependency installation was performed.
+- Independently recomputed all 36,231 validation prediction cases across
+  three tau values from the exported numeric cache: confusion matrices,
+  per-city recalls, macro recall, accuracy, ECE, confidence and error
+  transitions agreed with the recorded metrics.
+- Verified model and metadata hashes against result.json and froze both
+  checked files for the already requested track-b-1 Release.
+  model.onnx SHA256: 1172954c6c88b54f337af556771c8be641f8fc9366573bd88ba31f22ad616f7b.
+  submission.json SHA256: 9f850f9446d2ff1ed833252645f220b8f8869b1a7ea8bbe2073c04f1dd6b7f84.
+- Evidence: checks/b_effb3_transfer/result.json, profile.json, plan.json,
+  history.json, tau_metrics.csv, submission.json, official_format_check.txt
+  and verified_summary.json. Original execution logs remain in
+  results/colab_logs/1109_205501_train_b_transfer_b_effb3_smoke.txt,
+  1109_205706_train_b_transfer_b_effb3_transfer.txt and
+  1109_224312_check_submission.txt.
+- experiments.csv now has four completed training rows: three Track A rows
+  and this Track B row. Smoke testing did not add a training row.
+- what it means: student interpretation requested; pending. Publication
+  proceeds under the existing authorization and selected title
+  "EfficientNet-B3 300px progressive transfer".

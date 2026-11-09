@@ -1,0 +1,45 @@
+{
+  "plan": {
+    "schema": 1,
+    "model": "efficientnet_b3",
+    "weights": "IMAGENET1K_V1",
+    "size": 300,
+    "small_size": 240,
+    "small_epochs": 3,
+    "epochs": 8,
+    "batch_size": 32,
+    "head_only_epochs": 1,
+    "backbone_lr": 3e-05,
+    "head_lr": 0.0003,
+    "weight_decay": 0.05,
+    "label_smoothing": 0.1,
+    "ema_decay": 0.99,
+    "max_active_minutes": 100,
+    "seed": 0,
+    "taus": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "quick": false,
+    "quick_steps": null,
+    "sampling": "ordinary shuffle; no class balancing",
+    "augmentation": "random resized crop scale 0.35..1, horizontal flip, stage-wise color jitter",
+    "validation": "full validation at 300px with official grader preprocessing; smoke uses a stride"
+  },
+  "fingerprint": "e49e0f12d71eb8613172d7d921caa1a9599e4248af1d5075ec30b220ec80fc49",
+  "script_hashes": {
+    "train_b_transfer.py": "12e8c2c6a504826414aea15ac8111aba43d566445dbb63967829448f7144014d",
+    "transfer_plan.py": "115bded2d26985e09354ee35e24b1d37708130150c83cac798cf6ed98c0092c9",
+    "rules.py": "560704efdf6941fa9521097aa65607c421faf2838ce1f6083e9f494f2548ee2c",
+    "export.py": "be53f5e755cbdd6e1e105632a51737c2b360018c210d3357bf1324d96398249f",
+    "eval_logit_adjustment.py": "9ebbf17a327d452df40738193328ada2890cb977a2973c4e99f68c30c3a312be"
+  },
+  "training_counts": {
+    "seoul": 11274,
+    "busan": 5191,
+    "tokyo": 13347,
+    "osaka": 7200,
+    "taipei": 7245
+  }
+}

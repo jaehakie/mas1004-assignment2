@@ -1,0 +1,988 @@
+{
+  "status": "complete",
+  "track": "B",
+  "tag": "b_effb3_transfer",
+  "quick": false,
+  "fingerprint": "e49e0f12d71eb8613172d7d921caa1a9599e4248af1d5075ec30b220ec80fc49",
+  "plan": {
+    "schema": 1,
+    "model": "efficientnet_b3",
+    "weights": "IMAGENET1K_V1",
+    "size": 300,
+    "small_size": 240,
+    "small_epochs": 3,
+    "epochs": 8,
+    "batch_size": 32,
+    "head_only_epochs": 1,
+    "backbone_lr": 3e-05,
+    "head_lr": 0.0003,
+    "weight_decay": 0.05,
+    "label_smoothing": 0.1,
+    "ema_decay": 0.99,
+    "max_active_minutes": 100,
+    "seed": 0,
+    "taus": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "quick": false,
+    "quick_steps": null,
+    "sampling": "ordinary shuffle; no class balancing",
+    "augmentation": "random resized crop scale 0.35..1, horizontal flip, stage-wise color jitter",
+    "validation": "full validation at 300px with official grader preprocessing; smoke uses a stride"
+  },
+  "commit": "1582429",
+  "script_hashes": {
+    "train_b_transfer.py": "12e8c2c6a504826414aea15ac8111aba43d566445dbb63967829448f7144014d",
+    "transfer_plan.py": "115bded2d26985e09354ee35e24b1d37708130150c83cac798cf6ed98c0092c9",
+    "rules.py": "560704efdf6941fa9521097aa65607c421faf2838ce1f6083e9f494f2548ee2c",
+    "export.py": "be53f5e755cbdd6e1e105632a51737c2b360018c210d3357bf1324d96398249f",
+    "eval_logit_adjustment.py": "9ebbf17a327d452df40738193328ada2890cb977a2973c4e99f68c30c3a312be"
+  },
+  "training_counts": {
+    "seoul": 11274,
+    "busan": 5191,
+    "tokyo": 13347,
+    "osaka": 7200,
+    "taipei": 7245
+  },
+  "training_prior": {
+    "seoul": 0.2547393632645683,
+    "busan": 0.11729217976817227,
+    "tokyo": 0.3015794111665951,
+    "osaka": 0.16268612874799468,
+    "taipei": 0.16370291705266962
+  },
+  "actual_steps": 10503,
+  "actual_draws": 336096,
+  "actual_epoch_progress": 7.594360086767896,
+  "selected_checkpoint_epoch_progress": 7.0,
+  "active_seconds_including_validation": 6303.497739904,
+  "stop_reason": "active_time_budget",
+  "validation_photos": 12077,
+  "validation_backend": "CUDA float32, official grader preprocessing",
+  "validation_note": "Development score selected on this set; not independent test accuracy. ONNX backend can differ slightly.",
+  "tau_evaluations": [
+    {
+      "macro_recall": 0.5149521752515585,
+      "accuracy": 0.541690817255941,
+      "per_city_recall": {
+        "seoul": 0.5856262833675565,
+        "busan": 0.3856115107913669,
+        "tokyo": 0.6284462767328008,
+        "osaka": 0.4008458646616541,
+        "taipei": 0.5742309407044137
+      },
+      "true_city_counts": {
+        "seoul": 2435,
+        "busan": 1390,
+        "tokyo": 3881,
+        "osaka": 2128,
+        "taipei": 2243
+      },
+      "predicted_city_counts": {
+        "seoul": 3065,
+        "busan": 934,
+        "tokyo": 4184,
+        "osaka": 1754,
+        "taipei": 2140
+      },
+      "confusion": [
+        [
+          1426,
+          180,
+          392,
+          145,
+          292
+        ],
+        [
+          459,
+          536,
+          179,
+          104,
+          112
+        ],
+        [
+          553,
+          71,
+          2439,
+          514,
+          304
+        ],
+        [
+          225,
+          76,
+          830,
+          853,
+          144
+        ],
+        [
+          402,
+          71,
+          344,
+          138,
+          1288
+        ]
+      ],
+      "row_normalized_confusion": [
+        [
+          0.5856262833675565,
+          0.07392197125256673,
+          0.16098562628336754,
+          0.059548254620123205,
+          0.11991786447638604
+        ],
+        [
+          0.3302158273381295,
+          0.3856115107913669,
+          0.12877697841726618,
+          0.07482014388489208,
+          0.08057553956834532
+        ],
+        [
+          0.14248904921412006,
+          0.018294254058232415,
+          0.6284462767328008,
+          0.13244009275959803,
+          0.07833032723524865
+        ],
+        [
+          0.10573308270676691,
+          0.03571428571428571,
+          0.3900375939849624,
+          0.4008458646616541,
+          0.06766917293233082
+        ],
+        [
+          0.1792242532322782,
+          0.03165403477485511,
+          0.1533660276415515,
+          0.06152474364690147,
+          0.5742309407044137
+        ]
+      ],
+      "wrong_count": 5535,
+      "mean_confidence_on_current_errors": 0.498592022388158,
+      "mean_confidence_on_fixed_baseline_errors": 0.498592022388158,
+      "mean_true_class_probability_on_fixed_baseline_errors": 0.18983067606741916,
+      "ece": 0.029435399263510763,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 105,
+          "accuracy": 0.21904761904761905,
+          "mean_confidence": 0.2538628069248461,
+          "absolute_gap": 0.03481518787722704
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 889,
+          "accuracy": 0.26659167604049494,
+          "mean_confidence": 0.3058712472742447,
+          "absolute_gap": 0.039279571233749755
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 1545,
+          "accuracy": 0.3553398058252427,
+          "mean_confidence": 0.3680245487504089,
+          "absolute_gap": 0.012684742925166193
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 1719,
+          "accuracy": 0.4264107038976149,
+          "mean_confidence": 0.43360539207728377,
+          "absolute_gap": 0.0071946881796688955
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 1641,
+          "accuracy": 0.49116392443631934,
+          "mean_confidence": 0.4993485459443517,
+          "absolute_gap": 0.008184621508032341
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 1384,
+          "accuracy": 0.5332369942196532,
+          "mean_confidence": 0.5661938239107838,
+          "absolute_gap": 0.03295682969113056
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 1153,
+          "accuracy": 0.559410234171726,
+          "mean_confidence": 0.6328514055051083,
+          "absolute_gap": 0.07344117133338235
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 944,
+          "accuracy": 0.659957627118644,
+          "mean_confidence": 0.6994622336742525,
+          "absolute_gap": 0.0395046065556085
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 823,
+          "accuracy": 0.7339003645200486,
+          "mean_confidence": 0.765929120644949,
+          "absolute_gap": 0.032028756124900415
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 744,
+          "accuracy": 0.7782258064516129,
+          "mean_confidence": 0.8342661849578792,
+          "absolute_gap": 0.05604037850626631
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 697,
+          "accuracy": 0.8680057388809183,
+          "mean_confidence": 0.8978205732707126,
+          "absolute_gap": 0.029814834389794376
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 433,
+          "accuracy": 0.9237875288683602,
+          "mean_confidence": 0.9586667523303524,
+          "absolute_gap": 0.034879223461992126
+        }
+      ],
+      "error_transitions": {
+        "corrected_baseline_errors": 0,
+        "new_errors_on_baseline_correct": 0,
+        "rerouted_still_wrong": 0,
+        "unchanged_still_wrong": 5535
+      },
+      "pair_errors": {
+        "osaka_to_tokyo": {
+          "count": 830,
+          "rate_among_true_source_city": 0.3900375939849624
+        },
+        "tokyo_to_osaka": {
+          "count": 514,
+          "rate_among_true_source_city": 0.13244009275959803
+        },
+        "busan_to_seoul": {
+          "count": 459,
+          "rate_among_true_source_city": 0.3302158273381295
+        },
+        "seoul_to_busan": {
+          "count": 180,
+          "rate_among_true_source_city": 0.07392197125256673
+        },
+        "taipei_to_tokyo": {
+          "count": 344,
+          "rate_among_true_source_city": 0.1533660276415515
+        },
+        "taipei_to_seoul": {
+          "count": 402,
+          "rate_among_true_source_city": 0.1792242532322782
+        }
+      },
+      "tau": 0.0
+    },
+    {
+      "macro_recall": 0.5263357622601611,
+      "accuracy": 0.5360602798708288,
+      "per_city_recall": {
+        "seoul": 0.5301848049281315,
+        "busan": 0.45179856115107914,
+        "tokyo": 0.5552692604998711,
+        "osaka": 0.47650375939849626,
+        "taipei": 0.6179224253232278
+      },
+      "true_city_counts": {
+        "seoul": 2435,
+        "busan": 1390,
+        "tokyo": 3881,
+        "osaka": 2128,
+        "taipei": 2243
+      },
+      "predicted_city_counts": {
+        "seoul": 2713,
+        "busan": 1287,
+        "tokyo": 3426,
+        "osaka": 2220,
+        "taipei": 2431
+      },
+      "confusion": [
+        [
+          1291,
+          287,
+          286,
+          206,
+          365
+        ],
+        [
+          389,
+          628,
+          121,
+          119,
+          133
+        ],
+        [
+          512,
+          140,
+          2155,
+          697,
+          377
+        ],
+        [
+          193,
+          122,
+          629,
+          1014,
+          170
+        ],
+        [
+          328,
+          110,
+          235,
+          184,
+          1386
+        ]
+      ],
+      "row_normalized_confusion": [
+        [
+          0.5301848049281315,
+          0.11786447638603696,
+          0.11745379876796715,
+          0.08459958932238193,
+          0.14989733059548255
+        ],
+        [
+          0.2798561151079137,
+          0.45179856115107914,
+          0.08705035971223021,
+          0.0856115107913669,
+          0.09568345323741007
+        ],
+        [
+          0.13192476165936615,
+          0.03607317701623293,
+          0.5552692604998711,
+          0.1795928884308168,
+          0.09713991239371296
+        ],
+        [
+          0.09069548872180451,
+          0.05733082706766917,
+          0.2955827067669173,
+          0.47650375939849626,
+          0.07988721804511278
+        ],
+        [
+          0.14623272403031654,
+          0.049041462327240305,
+          0.10477039679001338,
+          0.08203299152920196,
+          0.6179224253232278
+        ]
+      ],
+      "wrong_count": 5603,
+      "mean_confidence_on_current_errors": 0.4877345757958209,
+      "mean_confidence_on_fixed_baseline_errors": 0.4895349331918122,
+      "mean_true_class_probability_on_fixed_baseline_errors": 0.19232795370542446,
+      "ece": 0.024854070780967463,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 152,
+          "accuracy": 0.20394736842105263,
+          "mean_confidence": 0.2527588198550028,
+          "absolute_gap": 0.04881145143395019
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 977,
+          "accuracy": 0.28249744114636643,
+          "mean_confidence": 0.3058134089962143,
+          "absolute_gap": 0.023315967849847852
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 1627,
+          "accuracy": 0.3515673017824216,
+          "mean_confidence": 0.367757320892231,
+          "absolute_gap": 0.016190019109809384
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 1784,
+          "accuracy": 0.4349775784753363,
+          "mean_confidence": 0.4326928184169459,
+          "absolute_gap": 0.0022847600583904004
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 1659,
+          "accuracy": 0.47860156720916214,
+          "mean_confidence": 0.49941457778412207,
+          "absolute_gap": 0.020813010574959934
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 1377,
+          "accuracy": 0.5344952795933188,
+          "mean_confidence": 0.5652349957449112,
+          "absolute_gap": 0.030739716151592433
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 1044,
+          "accuracy": 0.6044061302681992,
+          "mean_confidence": 0.6330697823084526,
+          "absolute_gap": 0.02866365204025334
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 950,
+          "accuracy": 0.64,
+          "mean_confidence": 0.6990565286623721,
+          "absolute_gap": 0.0590565286623721
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 772,
+          "accuracy": 0.716321243523316,
+          "mean_confidence": 0.7640963270469905,
+          "absolute_gap": 0.04777508352367443
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 710,
+          "accuracy": 0.8,
+          "mean_confidence": 0.8320174871437893,
+          "absolute_gap": 0.03201748714378927
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 622,
+          "accuracy": 0.882636655948553,
+          "mean_confidence": 0.8983157364312059,
+          "absolute_gap": 0.015679080482652874
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 403,
+          "accuracy": 0.9429280397022333,
+          "mean_confidence": 0.9610255620898202,
+          "absolute_gap": 0.018097522387586884
+        }
+      ],
+      "error_transitions": {
+        "corrected_baseline_errors": 388,
+        "new_errors_on_baseline_correct": 456,
+        "rerouted_still_wrong": 374,
+        "unchanged_still_wrong": 4773
+      },
+      "pair_errors": {
+        "osaka_to_tokyo": {
+          "count": 629,
+          "rate_among_true_source_city": 0.2955827067669173
+        },
+        "tokyo_to_osaka": {
+          "count": 697,
+          "rate_among_true_source_city": 0.1795928884308168
+        },
+        "busan_to_seoul": {
+          "count": 389,
+          "rate_among_true_source_city": 0.2798561151079137
+        },
+        "seoul_to_busan": {
+          "count": 287,
+          "rate_among_true_source_city": 0.11786447638603696
+        },
+        "taipei_to_tokyo": {
+          "count": 235,
+          "rate_among_true_source_city": 0.10477039679001338
+        },
+        "taipei_to_seoul": {
+          "count": 328,
+          "rate_among_true_source_city": 0.14623272403031654
+        }
+      },
+      "tau": 0.5
+    },
+    {
+      "macro_recall": 0.529978728227133,
+      "accuracy": 0.5223151444895255,
+      "per_city_recall": {
+        "seoul": 0.4685831622176591,
+        "busan": 0.5244604316546763,
+        "tokyo": 0.4779695954650863,
+        "osaka": 0.5324248120300752,
+        "taipei": 0.6464556397681677
+      },
+      "true_city_counts": {
+        "seoul": 2435,
+        "busan": 1390,
+        "tokyo": 3881,
+        "osaka": 2128,
+        "taipei": 2243
+      },
+      "predicted_city_counts": {
+        "seoul": 2301,
+        "busan": 1708,
+        "tokyo": 2759,
+        "osaka": 2641,
+        "taipei": 2668
+      },
+      "confusion": [
+        [
+          1141,
+          432,
+          202,
+          239,
+          421
+        ],
+        [
+          309,
+          729,
+          76,
+          127,
+          149
+        ],
+        [
+          450,
+          210,
+          1855,
+          917,
+          449
+        ],
+        [
+          150,
+          177,
+          469,
+          1133,
+          199
+        ],
+        [
+          251,
+          160,
+          157,
+          225,
+          1450
+        ]
+      ],
+      "row_normalized_confusion": [
+        [
+          0.4685831622176591,
+          0.17741273100616017,
+          0.08295687885010267,
+          0.09815195071868583,
+          0.1728952772073922
+        ],
+        [
+          0.2223021582733813,
+          0.5244604316546763,
+          0.05467625899280575,
+          0.09136690647482014,
+          0.10719424460431655
+        ],
+        [
+          0.11594949755217727,
+          0.054109765524349394,
+          0.4779695954650863,
+          0.2362793094563257,
+          0.11569183200206132
+        ],
+        [
+          0.07048872180451128,
+          0.08317669172932331,
+          0.22039473684210525,
+          0.5324248120300752,
+          0.09351503759398497
+        ],
+        [
+          0.11190370040124833,
+          0.07133303611234953,
+          0.06999554168524298,
+          0.10031208203299152,
+          0.6464556397681677
+        ]
+      ],
+      "wrong_count": 5769,
+      "mean_confidence_on_current_errors": 0.48468930658889287,
+      "mean_confidence_on_fixed_baseline_errors": 0.48911529119428065,
+      "mean_true_class_probability_on_fixed_baseline_errors": 0.1962797244375995,
+      "ece": 0.03208872331953638,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 0,
+          "accuracy": null,
+          "mean_confidence": null,
+          "absolute_gap": null
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 131,
+          "accuracy": 0.22900763358778625,
+          "mean_confidence": 0.25393469136640134,
+          "absolute_gap": 0.02492705777861509
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 1026,
+          "accuracy": 0.29239766081871343,
+          "mean_confidence": 0.305460307856938,
+          "absolute_gap": 0.013062647038224573
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 1739,
+          "accuracy": 0.3438757906843013,
+          "mean_confidence": 0.3676629018358194,
+          "absolute_gap": 0.023787111151518103
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 1830,
+          "accuracy": 0.40437158469945356,
+          "mean_confidence": 0.4334053536315526,
+          "absolute_gap": 0.029033768932099024
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 1663,
+          "accuracy": 0.4726398075766687,
+          "mean_confidence": 0.4991580198736548,
+          "absolute_gap": 0.026518212296986143
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 1311,
+          "accuracy": 0.5369946605644547,
+          "mean_confidence": 0.5656591108066139,
+          "absolute_gap": 0.028664450242159245
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 1049,
+          "accuracy": 0.5900857959961868,
+          "mean_confidence": 0.6319189441188625,
+          "absolute_gap": 0.04183314812267569
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 935,
+          "accuracy": 0.6320855614973262,
+          "mean_confidence": 0.6992346857152992,
+          "absolute_gap": 0.06714912421797303
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 809,
+          "accuracy": 0.7058096415327565,
+          "mean_confidence": 0.7652225117684308,
+          "absolute_gap": 0.05941287023567432
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 627,
+          "accuracy": 0.7926634768740032,
+          "mean_confidence": 0.8332132588413177,
+          "absolute_gap": 0.04054978196731451
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 559,
+          "accuracy": 0.8747763864042933,
+          "mean_confidence": 0.8997258004226729,
+          "absolute_gap": 0.02494941401837958
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 398,
+          "accuracy": 0.9623115577889447,
+          "mean_confidence": 0.9637876258022653,
+          "absolute_gap": 0.001476068013320564
+        }
+      ],
+      "error_transitions": {
+        "corrected_baseline_errors": 689,
+        "new_errors_on_baseline_correct": 923,
+        "rerouted_still_wrong": 750,
+        "unchanged_still_wrong": 4096
+      },
+      "pair_errors": {
+        "osaka_to_tokyo": {
+          "count": 469,
+          "rate_among_true_source_city": 0.22039473684210525
+        },
+        "tokyo_to_osaka": {
+          "count": 917,
+          "rate_among_true_source_city": 0.2362793094563257
+        },
+        "busan_to_seoul": {
+          "count": 309,
+          "rate_among_true_source_city": 0.2223021582733813
+        },
+        "seoul_to_busan": {
+          "count": 432,
+          "rate_among_true_source_city": 0.17741273100616017
+        },
+        "taipei_to_tokyo": {
+          "count": 157,
+          "rate_among_true_source_city": 0.06999554168524298
+        },
+        "taipei_to_seoul": {
+          "count": 251,
+          "rate_among_true_source_city": 0.11190370040124833
+        }
+      },
+      "tau": 1.0
+    }
+  ],
+  "selected_tau": 1.0,
+  "val_score": 0.529978728227133,
+  "val_per_city": {
+    "seoul": 0.4685831622176591,
+    "busan": 0.5244604316546763,
+    "tokyo": 0.4779695954650863,
+    "osaka": 0.5324248120300752,
+    "taipei": 0.6464556397681677
+  },
+  "val_confusion": [
+    [
+      1141,
+      432,
+      202,
+      239,
+      421
+    ],
+    [
+      309,
+      729,
+      76,
+      127,
+      149
+    ],
+    [
+      450,
+      210,
+      1855,
+      917,
+      449
+    ],
+    [
+      150,
+      177,
+      469,
+      1133,
+      199
+    ],
+    [
+      251,
+      160,
+      157,
+      225,
+      1450
+    ]
+  ],
+  "onnx_gap": 1.430511474609375e-06,
+  "final_profile": {
+    "parameters": 10660275,
+    "gmacs": 1.825613072,
+    "file_mb": 42.767167,
+    "opset": 17,
+    "ops": [
+      "Add",
+      "Conv",
+      "Div",
+      "Flatten",
+      "Gemm",
+      "GlobalAveragePool",
+      "Mul",
+      "Sigmoid",
+      "Sub"
+    ],
+    "problems": []
+  },
+  "submission": {
+    "image_size": 300,
+    "starting_weights": "torchvision efficientnet_b3 IMAGENET1K_V1; EMA fine-tuning",
+    "data": "data/starter/train",
+    "summary": "EfficientNet-B3 300px progressive transfer; 7.59 epochs; tau=1"
+  },
+  "assets": {
+    "model.onnx": {
+      "sha256": "1172954c6c88b54f337af556771c8be641f8fc9366573bd88ba31f22ad616f7b",
+      "bytes": 42767167
+    },
+    "submission.json": {
+      "sha256": "9f850f9446d2ff1ed833252645f220b8f8869b1a7ea8bbe2073c04f1dd6b7f84",
+      "bytes": 219
+    }
+  },
+  "training_row": {
+    "finished": "2026-11-09T22:43:07",
+    "track": "B",
+    "tag": "b_effb3_transfer",
+    "seed": 0,
+    "budget": 336096,
+    "val_score": 0.53,
+    "seoul": 0.4686,
+    "busan": 0.5245,
+    "tokyo": 0.478,
+    "osaka": 0.5324,
+    "taipei": 0.6465,
+    "train_seconds": 6303.5,
+    "device": "cuda",
+    "selection": "efficientnet_b3 300px progressive; data/starter/train",
+    "commit": "1582429"
+  }
+}

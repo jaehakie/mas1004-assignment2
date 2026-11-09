@@ -1,0 +1,19 @@
+{
+  "parameters": 10660275,
+  "gmacs": 1.825613072,
+  "file_mb": 42.767167,
+  "opset": 17,
+  "ops": [
+    "Add",
+    "Conv",
+    "Div",
+    "Flatten",
+    "Gemm",
+    "GlobalAveragePool",
+    "Mul",
+    "Sigmoid",
+    "Sub"
+  ],
+  "problems": [],
+  "onnx_gap": 4.76837158203125e-07
+}

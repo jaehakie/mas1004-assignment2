@@ -1,0 +1,80 @@
+{
+  "verified": true,
+  "numeric_prediction_cases_checked": 36231,
+  "model_inference_or_training_run_locally": false,
+  "tau_metrics": [
+    {
+      "tau": 0.0,
+      "macro_recall": 0.5149521752515585,
+      "accuracy": 0.541690817255941,
+      "ece": 0.029435399263510763,
+      "per_city_recall": {
+        "seoul": 0.5856262833675565,
+        "busan": 0.3856115107913669,
+        "tokyo": 0.6284462767328008,
+        "osaka": 0.4008458646616541,
+        "taipei": 0.5742309407044137
+      }
+    },
+    {
+      "tau": 0.5,
+      "macro_recall": 0.5263357622601611,
+      "accuracy": 0.5360602798708288,
+      "ece": 0.024854070780967463,
+      "per_city_recall": {
+        "seoul": 0.5301848049281315,
+        "busan": 0.45179856115107914,
+        "tokyo": 0.5552692604998711,
+        "osaka": 0.47650375939849626,
+        "taipei": 0.6179224253232278
+      }
+    },
+    {
+      "tau": 1.0,
+      "macro_recall": 0.529978728227133,
+      "accuracy": 0.5223151444895255,
+      "ece": 0.03208872331953638,
+      "per_city_recall": {
+        "seoul": 0.4685831622176591,
+        "busan": 0.5244604316546763,
+        "tokyo": 0.4779695954650863,
+        "osaka": 0.5324248120300752,
+        "taipei": 0.6464556397681677
+      }
+    }
+  ],
+  "selected_tau": 1.0,
+  "actual_epoch_progress": 7.594360086767896,
+  "selected_checkpoint_epoch_progress": 7.0,
+  "active_minutes_including_final_validation_export": 105.05829566506667,
+  "profile": {
+    "parameters": 10660275,
+    "gmacs": 1.825613072,
+    "file_mb": 42.767167,
+    "opset": 17,
+    "ops": [
+      "Add",
+      "Conv",
+      "Div",
+      "Flatten",
+      "Gemm",
+      "GlobalAveragePool",
+      "Mul",
+      "Sigmoid",
+      "Sub"
+    ],
+    "problems": []
+  },
+  "assets": {
+    "model.onnx": {
+      "sha256": "1172954c6c88b54f337af556771c8be641f8fc9366573bd88ba31f22ad616f7b",
+      "bytes": 42767167
+    },
+    "submission.json": {
+      "sha256": "9f850f9446d2ff1ed833252645f220b8f8869b1a7ea8bbe2073c04f1dd6b7f84",
+      "bytes": 219
+    }
+  },
+  "zip_sha256": "11af78115ff7174d6c181fec0dd7aa2f2949636e0d6bf68d370c5c07a769dfce",
+  "grading_status": "not yet published"
+}

@@ -1,0 +1,6 @@
+{
+  "image_size": 300,
+  "starting_weights": "torchvision efficientnet_b3 IMAGENET1K_V1; EMA fine-tuning",
+  "data": "data/starter/train",
+  "summary": "EfficientNet-B3 300px progressive transfer; 7.59 epochs; tau=1"
+}
