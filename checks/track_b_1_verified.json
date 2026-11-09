@@ -1,0 +1,22 @@
+{
+  "status": "published_and_download_verified",
+  "tag": "track-b-1",
+  "title": "EfficientNet-B3 300px progressive transfer",
+  "url": "https://github.com/jaehakie/mas1004-assignment2/releases/tag/track-b-1",
+  "published_kst": "2026-11-09T22:49:56+09:00",
+  "before_requested_midnight": true,
+  "target_commit": "a6cac0ca52e1c2b5ee9fc0156d394778ca7d1480",
+  "assets": {
+    "model.onnx": {
+      "sha256": "1172954c6c88b54f337af556771c8be641f8fc9366573bd88ba31f22ad616f7b",
+      "bytes": 42767167,
+      "download_matches_checked_asset": true
+    },
+    "submission.json": {
+      "sha256": "9f850f9446d2ff1ed833252645f220b8f8869b1a7ea8bbe2073c04f1dd6b7f84",
+      "bytes": 219,
+      "download_matches_checked_asset": true
+    }
+  },
+  "grading_status": "awaiting nightly grading; no leaderboard score claimed"
+}

@@ -76,5 +76,7 @@
     }
   },
   "zip_sha256": "11af78115ff7174d6c181fec0dd7aa2f2949636e0d6bf68d370c5c07a769dfce",
-  "grading_status": "not yet published"
+  "grading_status": "published; nightly grading pending",
+  "release_url": "https://github.com/jaehakie/mas1004-assignment2/releases/tag/track-b-1",
+  "published_kst": "2026-11-09T22:49:56+09:00"
 }

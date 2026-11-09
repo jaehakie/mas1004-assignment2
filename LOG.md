@@ -818,3 +818,24 @@ End the log with your plan for what to try next.
 - what it means: student interpretation requested; pending. Publication
   proceeds under the existing authorization and selected title
   "EfficientNet-B3 300px progressive transfer".
+
+## 2026-11-09 track-b-1 published and downloaded files verified
+- Release: https://github.com/jaehakie/mas1004-assignment2/releases/tag/track-b-1
+- Student-selected title: "EfficientNet-B3 300px progressive transfer".
+- Published 2026-11-09 22:49:56 KST (13:49:56 UTC), before the requested
+  2026-11-10 00:00 KST daily cutoff. Public, not a draft or prerelease.
+- Target commit: a6cac0ca52e1c2b5ee9fc0156d394778ca7d1480.
+- Exactly two assets: model.onnx (42,767,167 bytes) and submission.json
+  (219 bytes). The binary model is a Release asset and is not in Git history.
+- Downloaded both published assets and checked byte-for-byte equality with
+  the frozen, checked submission. SHA256 values and GitHub asset digests
+  agree with the verified training result.
+- Evidence: checks/track_b_1_release.json and checks/track_b_1_verified.json.
+  A readable run summary is in checks/b_effb3_transfer/summary.md.
+- Both required tracks now have valid public Releases. Track B's actual
+  leaderboard result is still pending nightly grading; validation 53.00%
+  is not a forecast of that result. No new Track A experiment was started.
+- Remaining: record the student's interpretation, check the next leaderboard
+  results, finish the long report together, and have the student independently
+  write/submit the short report. Both PDF reports are due on Cyber Campus
+  by 2026-11-10 22:00 KST.
