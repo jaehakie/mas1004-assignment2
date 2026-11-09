@@ -714,3 +714,51 @@ End the log with your plan for what to try next.
   jdasam/mas1004-leaderboard board.json and computed without model inference.
 - No recipe or tau was changed using this leaderboard feedback. Student
   interpretation is not invented here; Track B training remains pending.
+
+## 2026-11-09 b_effb3_transfer: research-informed model selected; Colab pending
+- Student request (verbatim): "track B 모델을 ResNet18·224px·4 epochs 이거 말고 다른 모델로 해보자. 최대한 성능을 올릴 수 있는 걸로. 우리가 도시 분류 문제이고 track B에서는 추가 데이터 학습 방법을 개선할 수 있으니까 다른 오픈소스나 연구 결과 참고해서 가져올 수 있는 거 있으면 모델 만드는 거 참고해."
+- Student time-budget answer (verbatim): "1~2시간 정도 (권장)".
+- Student model choice (verbatim): "EfficientNet-B3, 300px (권장)".
+- Student title choice (verbatim): "EfficientNet-B3 300px progressive transfer (권장)".
+  The actual Release title is "EfficientNet-B3 300px progressive transfer";
+  the recommendation marker is not part of the title.
+- The earlier default b_baseline queue is replaced before any Track B training
+  has run. No default ResNet18 Track B score exists and no improvement over
+  that unrun baseline can be claimed.
+- Research and sources: notes/track_b_research.md covers EfficientNet,
+  progressive learning, logit adjustment, StreetCLIP and CosPlace. The chosen
+  backbone uses official torchvision ImageNet V1 weights. No StreetCLIP or
+  CosPlace weights, newly collected photographs or excluded photographs are
+  used in this experiment.
+- The standard B3 classifier has 12,233,232 parameters for 1,000 classes;
+  replacing it with five outputs gives 10,703,917 trainable parameters by
+  arithmetic. Official ONNX stored-parameter / GMAC / file-size measurements
+  remain required before training and on the final export.
+- Planned protocol: at most eight epochs, batch 32, seed 0, train at 240px
+  for three epochs then 300px; always evaluate at 300px. Head-only first
+  epoch, then backbone/head peak learning rates 3e-5/3e-4, warmup/cosine decay,
+  EMA, original random crop/flip and label smoothing, stage-wise color jitter.
+- This is a combined first-model protocol, not a controlled attribution of
+  each ingredient's effect. The settings are engineering choices to test;
+  research on other datasets does not establish best city accuracy here.
+- Time limit: 100 accumulated active minutes of training/checkpointing and
+  intermediate validation, followed by final validation/export. Actual steps,
+  draws, epoch progress and selected checkpoint are recorded. A time-limited
+  run is not reported as having finished all eight epochs.
+- Checkpoints are on Colab Drive under ignored .training_cache/, outside the
+  folders packed into from_colab.zip. Interrupted runs resume their saved
+  epoch/batch, optimizer, EMA and RNG states if code/data/config still match.
+- Validation-only model selection: checkpoint and tau 0, 0.5 or 1 are selected
+  by development macro recall. The chosen correction is folded into the head
+  bias. There is no class-balanced sampler and no leaderboard-driven tuning.
+- Queue: GPU guard; ONNX preflight plus 20-step full-backprop smoke test at
+  300px; real b_effb3_transfer training/export; official submission format and
+  limits check. Only the real completed run adds a training experiment row.
+- Local checks passed: syntax, progressive stages, smoke-test configuration,
+  learning-rate bounds, resume cursors/fingerprints, numeric tau adjustment
+  and ties, parameter arithmetic, idempotent experiment append and rejection
+  of changed completed results. No local torch import, training environment,
+  photo processing or model inference was used.
+- Pending: execute on Colab once GPU is available, inspect measured limits
+  and returned results, get the student's result interpretation, then publish
+  the already requested first valid Track B Release with the selected title.

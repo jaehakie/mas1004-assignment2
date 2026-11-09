@@ -1,4 +1,4 @@
 python src/require_colab_gpu.py
-python src/train_b.py --tag b_baseline --submit
+python src/train_b_transfer.py --tag b_effb3_smoke --quick
+python src/train_b_transfer.py --tag b_effb3_transfer --submit
 python src/check_submission.py --no-val
-python src/record_track_b_run.py --tag b_baseline
