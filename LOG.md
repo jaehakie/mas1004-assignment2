@@ -692,3 +692,25 @@ End the log with your plan for what to try next.
   training or CPU training has been started as a fallback.
 - Track A's verified track-a-2 Release remains complete. Track B and both
   report PDFs still need completion before 2026-11-10 22:00 KST.
+
+## 2026-11-09 track-a-2 leaderboard result: verified official snapshot
+- Official board updated 2026-11-09 02:41 KST and includes jaehakie,
+  track-a-2, "logit adjustment tau=1", ranked 2 among scored Track A entries.
+- Grader's three-seed mean validation: 0.5125666666666667.
+  Leaderboard score: 0.42543333333333333; observed seed min/max 0.4193/0.4357.
+- Current leader Samba09: validation 0.5077333333333334, leaderboard score
+  0.4267, observed seed min/max 0.4106/0.4357. The user's validation is higher
+  by 0.483333 percentage points; leaderboard score is lower by 0.126667 pp.
+- User minus leader city recalls on leaderboard: Seoul -9.133333 pp,
+  Busan +5.600000 pp, Tokyo -0.766667 pp, Osaka +3.333333 pp,
+  Taipei +0.333333 pp. City figures in the board are display-rounded;
+  displayed min/max ranges are not statistical confidence intervals.
+- Validation and leaderboard use different photo sets. Leaderboard street
+  videos come from channels outside starter data. These measurements locate
+  the city trade-off but do not identify which training change caused the
+  difference between two different students' recipes.
+- Evidence: checks/leaderboard_2026-11-09_0241.json and
+  checks/leaderboard_track_a_2_comparison.json, downloaded from the official
+  jdasam/mas1004-leaderboard board.json and computed without model inference.
+- No recipe or tau was changed using this leaderboard feedback. Student
+  interpretation is not invented here; Track B training remains pending.

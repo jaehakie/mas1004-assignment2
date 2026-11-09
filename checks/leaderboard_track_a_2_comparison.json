@@ -1,0 +1,50 @@
+{
+  "updated": "2026-11-09 02:41 KST",
+  "my_rank": 2,
+  "mine": {
+    "nick": "jaehakie",
+    "tag": "track-a-2",
+    "submissions": 2,
+    "published_at": "2026-11-08T12:55:49Z",
+    "title": "logit adjustment tau=1",
+    "score": 0.42543333333333333,
+    "low": 0.4193,
+    "high": 0.4357,
+    "per_city": {
+      "seoul": 0.5123333333333333,
+      "busan": 0.36866666666666664,
+      "tokyo": 0.63,
+      "osaka": 0.33,
+      "taipei": 0.2866666666666667
+    },
+    "val": 0.5125666666666667
+  },
+  "leader": {
+    "nick": "Samba09",
+    "tag": "track-a-5",
+    "submissions": 5,
+    "published_at": "2026-11-08T10:27:25Z",
+    "title": "Balanced sampling + indoor filtering + no label smoothing",
+    "score": 0.4267,
+    "low": 0.4106,
+    "high": 0.4357,
+    "per_city": {
+      "seoul": 0.6036666666666667,
+      "busan": 0.31266666666666665,
+      "tokyo": 0.6376666666666667,
+      "osaka": 0.29666666666666663,
+      "taipei": 0.2833333333333333
+    },
+    "val": 0.5077333333333334
+  },
+  "my_minus_leader_validation_pp": 0.4833333333333356,
+  "my_minus_leader_score_pp": -0.12666666666666937,
+  "my_minus_leader_city_recall_pp": {
+    "seoul": -9.133333333333338,
+    "busan": 5.6,
+    "tokyo": -0.766666666666671,
+    "osaka": 3.3333333333333384,
+    "taipei": 0.3333333333333355
+  },
+  "seed_ranges_are_not_confidence_intervals": true
+}
